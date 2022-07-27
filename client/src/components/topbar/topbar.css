@@ -1,0 +1,78 @@
+.top {
+    width: 100%;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    z-index: 999;
+    background-color: white;
+    
+}
+
+.topLeft, .topRight {
+    flex: 3;
+    /*have 3 units*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*cetner in the 3 units*/
+}
+
+.topCenter {
+    flex: 6;
+    height: inherit;
+    /*has 6 units*/
+}
+
+.topImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: corver;
+    cursor: pointer;
+}
+
+.topList {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.topListItem {
+    flex: 1;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 13px;
+    padding-bottom: 14px;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+}
+.link:hover{
+    font-weight: 500;
+    color: var(--point-color);
+    font-weight: bold;
+}
+
+.topSearchIcon {
+    font-size: 18px;
+    color: var(--point-color);
+    cursor: pointer;
+    margin-left: 15px;
+    
+}
+
+#loginBtn{
+    margin-right: 20px;
+}

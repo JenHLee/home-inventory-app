@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import Topbar from "./components/topbar/Topbar";
+import Settings from "./pages/settings/Settings";
+import Signin from "./pages/signin/Signin";
+import Signup from "./pages/signup/Signup";
+import Home from "./pages/home/Home";
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "./context/Context";
 
 function App() {
+  const {user} = useContext(Context);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Topbar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+    </BrowserRouter> //need to be one div
   );
 }
 
