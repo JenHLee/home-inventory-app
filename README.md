@@ -1,4 +1,4 @@
-# Home Inventory App
+# HOME nVentory 
 - This web application is built for managing home inventory.
 
 ## 🌱 Features 
