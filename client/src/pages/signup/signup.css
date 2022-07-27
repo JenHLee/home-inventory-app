@@ -1,62 +1,89 @@
-.register {
+.signup {
+    margin: auto;
     font-family: var(--key-font);
     height: calc(100vh - 50px);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: white;
     background-size: cover;
 }
 
-.registerTitle {
+.signup_title {
     font-size: 50px;
 }
 
-.registerForm {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
+.signup_signin_txt{
+    color: var(--point-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+.signup_signin_txt:hover {
+    color: rgb(44, 37, 27);
+    font-weight: bold;
 }
 
-.registerForm>label {
+.signup_span{
+    padding-top: 5px;
+    padding-bottom: 30px;
+}
+
+.signup_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;    
+}
+.signup_form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.signup_img{
+    display: flex;
+    flex: 1;
+    background-image: url("../../assets/img/home_1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.signup_form>label {
     margin: 10px 0;
 }
 
-.registerInput {
-    padding: 10px;
+.signup_input {
+    padding: 15px;
+    width: 350px;
     background-color: white;
-    border: none;
+    border: solid 1px var(--point-color); 
+    margin-bottom: 20px;
 }
 
-.registerButton {
+.signup_btn {
+    border: solid 1px var(--point-color);
+    padding: 15px;
+    width: 381px;
+    background-color: var(--point-color); 
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
     margin-top: 20px;
     cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #f74c25;
-    color: #f7f6f2;
 }
 
-.registerButton:hover{
-    background-color: #f7f6f2; 
-    color: #f74c25;
+.signup_btn:disabled {
+    cursor: not-allowed;
+    background-color: rgb(255, 195, 174);
 }
 
-.registerLoginButton {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    background-color: #f74c25;
-    color: #f7f6f2;
-}
-
-
-.registerLoginButton:hover{
-    background-color: #f7f6f2; 
-    color: #f74c25;
+.signup_btn:hover{
+    background-color:  white;
+    color: var(--point-color);
+    border: solid 1px var(--point-color);
+    font-weight: bold;
 }

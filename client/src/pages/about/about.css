@@ -1,0 +1,39 @@
+.about{
+    background-image: url("../../assets/img/about.png");
+    height: 100vh;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   }
+
+h1{
+    color: white;
+    margin-top: 0;
+    padding-top: 200px;
+    margin-left: 100px;
+    margin-bottom: 200px;
+    display: flex;
+    text-align: left;
+    font-size: 70px;
+}
+
+table {
+    padding-left: 100px;
+    width: 100%;
+    margin: auto;
+    text-align: left;
+    color: white;
+}
+
+th{
+    font-size: 25px;
+}
+
+td{
+    font-size: 20px;
+}

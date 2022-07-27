@@ -1,18 +1,66 @@
-/*Color set*/
-:root {
-    --point-color : #705E45;
+:root{
+    /*color*/
+    --point-color: #705E45;
+    --black-color: #161618;
+    --darkgrey-color: #212124;
+    --gray-color: #818181;
+    /*font*/
+    --key-font: 'Roboto', sans-serif;
 }
-
 .home{
+    margin: auto;
     background-color: white;
-    font-family: 'Roboto', sans-serif;
-    margin-top: 100px;
+    font-family: var(--key-font);
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-h1{
-    font-size: 50px;
-    margin-bottom: 10px;
+.home_h1{
+    margin-left: 0;
+    font-size: 80px;
+    margin-bottom: 20px;
+    color: var(--black-color);
+}
+
+.home_span{
+    color: var(--darkgrey-color);
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.home_btn{
+    font-size: 20px;
+    color: var(--point-color);
+    border: solid 1px var(--point-color);
+    padding: 15px;
+    width: 200px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.home_btn:hover {
+    background-color: var(--point-color);
+    color: white;
+}
+
+.home_img_div{
+    padding-top: 30px;
+    display: flex;
+}
+
+.home_img1{
+    margin: 10px;
+    background-image: url("../../assets/img/home_2.jpg");
+    width: 600px;
+    height: 700px;
+}
+.home_img2{
+    margin: 10px;
+    background-image: url("../../assets/img/home_1.jpg");
+    width: 600px;
+    height: 700px;
 }

@@ -3,6 +3,7 @@ import Settings from "./pages/settings/Settings";
 import Signin from "./pages/signin/Signin";
 import Signup from "./pages/signup/Signup";
 import Home from "./pages/home/Home";
+import About from "./pages/about/About";
 
 import {
   BrowserRouter,
@@ -19,6 +20,7 @@ function App() {
       <Topbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin />} />
         <Route path="/settings" element={<Settings />} />

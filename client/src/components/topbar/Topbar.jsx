@@ -13,11 +13,10 @@ function Topbar() {
   };
   return (
     <div className="top">
-      <div className="topLeft">
-        <i className="topIcon fa-brands fa-github-square"></i>
-        <i className="topIcon fa-brands fa-instagram-square"></i>
-        <i className="topIcon fa-brands fa-dribbble-square"></i>
-      </div>
+      <Link className="link" to="/">
+      <img className="topLogo" src={"logo.png"} alt="logo" />
+      </Link>
+      <div className="topLeft"></div>
       <div className="topCenter">
         <ul className="topList">
           <li className="topListItem" id="listItemFirst">
@@ -26,20 +25,20 @@ function Topbar() {
               HOME
             </Link>
           </li>
-          <li className="topListItem" id="listItemSecond">
-            <Link className="link" to="/inventory">
-              {" "}
-              INVENTORY
-            </Link>
-          </li>
           <li className="topListItem" id="listItemThird">
             <Link className="link" to="/about">
               {" "}
               ABOUT US
             </Link>
           </li>
-          </ul>
-          </div>
+          <li className="topListItem" id="listItemSecond">
+            <Link className="link" to="/inventory">
+              {" "}
+              INVENTORY
+            </Link>
+          </li>
+        </ul>
+      </div>
       <div className="topRight">
         {user ? (
           user.profilePic ? (
@@ -58,8 +57,8 @@ function Topbar() {
         ) : (
           <ul className="topList">
             <li className="topListItem">
-              <Link className="link" to="/register">
-                REGISTER
+              <Link className="link" to="/signin">
+                SIGN IN
               </Link>
             </li>
           </ul>
