@@ -24,6 +24,7 @@ export default function Signin() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="signin">
       <div className="signin_div">
         <form className="signin_form" onSubmit={handleSubmit}>
@@ -57,6 +58,25 @@ export default function Signin() {
       </div>
 
       <div className="signin_img"></div>
+=======
+    <div className="login">
+      <form className="loginForm" onSubmit={handleSubmit}>
+        <span className="loginTitle">Welcome back!</span>
+        <label>Email</label>
+        <input key="{userRef}" type="text" className="loginInput" placeholder="Enter your username..." ref={userRef} />
+        <label>Passwordd</label>
+        <input key="{passwordRef}" type="password" className="loginInput" placeholder="Enter your password..." ref={passwordRef} />
+        <button className="loginButton" type="submit" disabled={isFetching}>
+          SIGN IN
+        </button>
+      </form>
+
+      <button className="loginRegisterButton">
+        <Link className="link" to="/signup">
+          SIGN UP
+        </Link>
+      </button>
+>>>>>>> 1bbf854ba20f6be8de960f6948b43720446bae09
     </div>
   );
 }
