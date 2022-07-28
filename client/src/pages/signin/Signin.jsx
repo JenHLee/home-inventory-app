@@ -24,7 +24,6 @@ export default function Signin() {
   };
 
   return (
-<<<<<<< HEAD
     <div className="signin">
       <div className="signin_div">
         <form className="signin_form" onSubmit={handleSubmit}>
@@ -36,21 +35,9 @@ export default function Signin() {
             </Link>
           </span>
           <label>Email</label>
-          <input
-            key="{userRef}"
-            type="text"
-            className="signin_input"
-            placeholder="Enter your username..."
-            ref={userRef}
-          />
+          <input key="{userRef}" type="text" className="signin_input" placeholder="Enter your username..." ref={userRef} />
           <label>Password</label>
-          <input
-            key="{passwordRef}"
-            type="password"
-            className="signin_input"
-            placeholder="Enter your password..."
-            ref={passwordRef}
-          />
+          <input key="{passwordRef}" type="password" className="signin_input" placeholder="Enter your password..." ref={passwordRef} />
           <button className="signin_btn" type="submit" disabled={isFetching}>
             SIGN IN
           </button>
