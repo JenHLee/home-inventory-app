@@ -12,7 +12,6 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-
     email: {
       type: String,
       required: true,
@@ -22,12 +21,16 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
-    // profilePic: {
-    //   type: String,
-    //   required: false,
-    //   //default: "",
-    // },
+    status: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    profilePic: {
+      type: String,
+      required: false,
+      default: "",
+    },
   },
   { timestamps: true } //time (update, create time)
 );

@@ -5,7 +5,7 @@ function About() {
   return (
     <div className="about">
       <h1>
-        Managing your<br></br>sweet home
+        Manage your<br></br>sweet home
       </h1>
       <table>
         <tr>
