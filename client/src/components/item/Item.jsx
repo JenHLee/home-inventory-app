@@ -2,7 +2,7 @@ import "./item.css";
 import { Link } from "react-router-dom";
 
 export default function item({ item }) {
-  const PF = "http://localhost:8080/images/";
+  const PF = "http://localhost:5000/images/";
   return (
     <div className="item">
       <img

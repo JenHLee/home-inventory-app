@@ -34,7 +34,7 @@ router.post("/signin", async (req, res) => {
   try {
     console.log("try");
     const user = await User.findOne({ email: req.body.email });
-    //unique user find by email (unique key)
+    //unique user find by email (unique key) in Mongo DB
     console.log("email user found");
 
     //if there is no user inside our DB, show 400 error code with Wrong Credentials! message.
@@ -51,7 +51,7 @@ router.post("/signin", async (req, res) => {
 
     const { password, ...others } = user._doc;
     return res.status(200).json(others);
-    console.log("200");
+
   } catch (err) {
     console.log("error is inside catch");
     //res.status(500).json(err);

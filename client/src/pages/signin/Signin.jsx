@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useRef } from "react";
+import { user, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./signin.css";
@@ -10,19 +10,24 @@ export default function Signin() {
   const { dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
+    console.log("e:" + e);
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/signin", {
-        username: userRef.current.value,
+        email: userRef.current.value,
         password: passwordRef.current.value,
       });
+      console.log("email/password" + res);
+      
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
 
+  console.log("user: " + user);
   return (
     <div className="signin">
       <div className="signin_div">
@@ -35,7 +40,7 @@ export default function Signin() {
             </Link>
           </span>
           <label>Email</label>
-          <input key="{userRef}" type="text" className="signin_input" placeholder="Enter your username..." ref={userRef} />
+          <input key="{userRef}" type="text" className="signin_input" placeholder="Enter your email..." ref={userRef} />
           <label>Password</label>
           <input key="{passwordRef}" type="password" className="signin_input" placeholder="Enter your password..." ref={passwordRef} />
           <button className="signin_btn" type="submit" disabled={isFetching}>

@@ -7,13 +7,13 @@ const dotenv = require("dotenv");
 dotenv.config();
 app.use(express.json());
 //can send any json file
-//app.use("/images", express.static(path.join(__dirname, "/images")));
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 //IMPORT ROUTES
-const authRoute = require("./routes/AuthRoute");
-const userRoute = require("./routes/UserRoute");
-const itemRoute = require("./routes/ItemRoute");
-const categoryRoute = require("./routes/CategoryRoute");
+const authRoute = require("./routes/auth");
+const userRoute = require("./routes/users");
+const itemRoute = require("./routes/items");
+const categoryRoute = require("./routes/categories");
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -38,11 +38,11 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 });
 
 app.use("/api/auth", authRoute);
-app.use("/api/user", userRoute);
-app.use("/api/item", itemRoute);
-app.use("/api/category", categoryRoute);
+app.use("/api/users", userRoute);
+app.use("/api/items", itemRoute);
+app.use("/api/categories", categoryRoute);
 
 //PORT NUMBER
-app.listen("8080", () => {
+app.listen("5000", () => {
   console.log("Backend is running");
 });
