@@ -14,13 +14,13 @@ export default function Signup() {
     e.preventDefault();
     console.log("handlesubmit function in after event prevent");
     console.log("e: " + e); // [object object]
-    //  const obj = JSON.stringify(e);
+    //const obj = JSON.stringify(e);
     // alert("e: " + JSON.parse(obj));
     setError(false);
     console.log("before try/catch: " + firstname, lastname, email, password);
     try {
       console.log("try in");
-      const res = await axios.post("/auth/signup", {
+      const res = await axios.post("http://localhost:3000/homeserver/api/auth/signup", {
         firstname,
         lastname,
         email,
@@ -31,6 +31,7 @@ export default function Signup() {
       res.data && window.location.replace("/signin");
     } catch (err) {
       console.log("catch in");
+      console.log(err);
       setError(true);
     }
   };

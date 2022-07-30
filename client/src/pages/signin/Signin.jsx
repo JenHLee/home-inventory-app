@@ -14,7 +14,7 @@ export default function Signin() {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("/auth/signin", {
+      const res = await axios.post("http://localhost:3000/homeserver/api/auth/signin", {
         email: userRef.current.value,
         password: passwordRef.current.value,
       });

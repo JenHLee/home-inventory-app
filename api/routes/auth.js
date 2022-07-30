@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 
 //SINGUP (REGISTER)
 router.post("/signup", async (req, res) => {
+  console.log("before try");
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(req.body.password, salt);
@@ -19,8 +20,10 @@ router.post("/signup", async (req, res) => {
     const user = await newUser.save();
     res.status(200).json(user);
     //when req is working
+    console.log("signup successful, user: " + user);
   } catch (err) {
     res.status(500).json(err);
+    console.log("error:" + err);
     //when req is not working
   }
 });
