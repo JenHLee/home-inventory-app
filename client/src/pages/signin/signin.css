@@ -88,3 +88,23 @@
     border: solid 1px var(--point-color);
     font-weight: bold;
 }
+
+.singin_error_msg {
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.signin_error_msg_contactus{
+    color: var(--point-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.signin_error_msg_contactus:hover {
+    color: rgb(44, 37, 27);
+    font-weight: bold;
+}

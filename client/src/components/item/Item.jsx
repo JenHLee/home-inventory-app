@@ -4,12 +4,12 @@ import { useContext } from "react";
 import { Context } from "../../context/Context";
 
 export default function Item({ item }) {
-  const { user, dispatch } = useContext(Context);
+  const { user } = useContext(Context);
   const PF = "http://localhost:5000/images/";
   return (
     <>
       {user ? (
-        user.email === item.email ? (
+       
           <div className="item">
             <div className="item_info">
               <Link to={`/item/${item._id}`} className="link">
@@ -30,7 +30,6 @@ export default function Item({ item }) {
               <span className="item_price">{item.price}</span>
             </div>
           </div>
-        ) : null
       ) : null}
     </>
   );

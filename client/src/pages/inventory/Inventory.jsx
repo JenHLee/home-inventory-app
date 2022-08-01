@@ -2,20 +2,28 @@ import { useEffect, useState } from "react";
 import Items from "../../components/items/Items";
 import "./inventory.css";
 import axios from "axios";
-import { useLocation } from "react-router";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
+// import { useLocation } from "react-router";
 
 export default function Home() {
   const [items, setItems] = useState([]);
-  const { search } = useLocation();
+  const { user } = useContext(Context);
+  // const search  = useLocation();
 
   useEffect(() => {
     const fetchitems = async () => {
       console.log("fetch item in");
-      const res = await axios.get("http://localhost:3000/homeserver/api/items" + search);
+      const res = await axios.get(
+        "http://localhost:3000/homeserver/api/items",
+        { params: { email: user.email, role: user.role } }
+      );
+      // console.log(`${JSON.stringify(search)}`);
       setItems(res.data);
+      console.log(JSON.stringify(res.data));
     };
     fetchitems();
-  }, [search]);
+  }, []);
   return (
     <>
       <div className="inventory">

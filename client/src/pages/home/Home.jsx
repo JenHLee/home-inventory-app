@@ -1,5 +1,6 @@
 import "./home.css";
 import { Link } from "react-router-dom";
+// html 의 a 태그
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 

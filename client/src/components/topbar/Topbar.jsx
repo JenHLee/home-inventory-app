@@ -6,11 +6,15 @@ import "./topbar.css";
 
 function Topbar() {
   const { user, dispatch } = useContext(Context);
+// 디스패치 ( dispatch )
+// 디스패치는 스토어의 내장 함수 중 하나로 리듀서에게 Action 을 발생하라고 시키는 것. 
+// dispatch 함수는 dispatch(action) 이런 식으로 Action 을 인자로 넘긴다.
   const PF = "http://localhost:5000/images/";
 
   const handleLogout = () => {
-    console.log("handleLogout in");
+    // console.log("handleLogout in");
     dispatch({ type: "LOGOUT" });
+    //LOGOUT이 액션
   };
 
   return (
@@ -32,8 +36,8 @@ function Topbar() {
             </Link>
           </li>
           {user ? (
-            user.email === "cprg352+admin@gmail.com" ||
-            user.email === "cprg352+admin2@gmail.com" ? (
+            user.role === 1 ||
+            user.role === 3 ? (
               <>
                 <li className="topListItem" id="listItemFourth">
                   <Link className="link" to="/admin/manageCategory">

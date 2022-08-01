@@ -17,7 +17,7 @@ export default function Settings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("e: " + e);
+    // console.log("e: " + e);
     dispatch({ type: "UPDATE_START" });
     const updatedUser = {
       userId: user._id,

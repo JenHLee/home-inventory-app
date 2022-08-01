@@ -10,10 +10,11 @@ export default function AddItem() {
   const [price, setPrice] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("e: " + JSON.stringify(e.data));
+    // console.log("e: " + JSON.stringify(e.data));
     const newItem = {
       category,
       title,
@@ -30,14 +31,16 @@ export default function AddItem() {
       try {
         await axios.post("http://localhost:3000/homeserver/api/upload", data);
         console.log("data: " + data);
-      } catch (err) {}
-    }
+      } catch (err) {
+        console.log(JSON.stringify(err.data));
+      } 
+    } 
     try {
       const res = await axios.post(
         "http://localhost:3000/homeserver/api/items/",
         newItem
       );
-      console.log("res: " + res);
+      // console.log("res: " + res);
       window.location.replace("/inventory");
     } catch (err) {}
   };
@@ -56,7 +59,7 @@ export default function AddItem() {
             ) : (
               <img
                 className="additem_img"
-                src={require("../../assets/img/defaultProfilePic.jpg")}
+                src={require("../../assets/img/default_item_img1.png")}
                 alt=""
               />
             )}
@@ -65,12 +68,13 @@ export default function AddItem() {
             type="file"
             id="file_input"
             style={{ display: "none" }}
+            required
             onChange={(e) => setFile(e.target.files[0])}
           />
         </div>
         <div className="additem_input_div">
           <label className="additem_input">Category</label>
-          <select onChange={(e) => setCategory(e.target.value)}>
+          <select required onChange={(e) => setCategory(e.target.value)}>
             <option>{category}</option>
             <option>
               --------------------------------------------------------
@@ -90,12 +94,14 @@ export default function AddItem() {
             type="text"
             className="additem_input"
             autoFocus={true}
+            required
             onChange={(e) => setTitle(e.target.value)}
           />
           <label className="additem_input">Price</label>
           <input
             type="text"
             placeholder="0"
+            required
             className="additem_input"
             onChange={(e) => setPrice(e.target.value)}
           />

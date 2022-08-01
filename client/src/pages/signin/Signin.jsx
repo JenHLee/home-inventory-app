@@ -8,10 +8,10 @@ export default function Signin() {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-    console.log("e:" + JSON.stringify(e.data));
+    // console.log("e:" + JSON.stringify(e.data));
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
@@ -24,15 +24,15 @@ export default function Signin() {
       );
       console.log("user status: " + JSON.stringify(res.data.status));
       console.log("email/password: " + JSON.stringify(res.data));
-
+      
       let userState = JSON.stringify(res.data.status);
       console.log("userState: " + userState);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
 
     } catch (err) {
-      setError(true);
+      setError(err.response.data.message);
       dispatch({ type: "LOGIN_FAILURE" });
-    }
+       }
   };
 
   return (
@@ -66,7 +66,9 @@ export default function Signin() {
             SIGN IN
           </button>
         </form>
-        {error && <span className="error_msg">Your account is inactive</span>}
+        {error && <span className="signin_error_msg">{error} <br></br>
+        any question?  
+        <a href="mailto:cprg352+admin@gmail.com" className="signin_error_msg_contactus"> contact us</a></span>}
       </div>
       <div className="signin_img"></div>
     </div>
