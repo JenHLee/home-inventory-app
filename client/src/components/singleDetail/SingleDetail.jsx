@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
 import Context from "../../context/Context";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -25,13 +24,13 @@ export default function SingleDetail() {
         "http://localhost:3000/homeserver/api/items/" + path
       );
       setItem(res.data);
-      console.log("res.data: " + JSON.stringify(res.data));
+      // console.log("res.data: " + JSON.stringify(res.data));
       setCategory(res.data.category);
-      console.log("category: " + res.data.category);
+      // console.log("category: " + res.data.category);
       setTitle(res.data.title);
-      console.log("title: " + res.data.title);
+      // console.log("title: " + res.data.title);
       setPrice(res.data.price);
-      console.log("price: " + res.data.price);
+      // console.log("price: " + res.data.price);
     };
     getItem();
   }, [path]); //[parameter]

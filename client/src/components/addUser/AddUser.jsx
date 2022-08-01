@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
-import { Context } from "../../context/Context";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./addUser.css";
 
@@ -10,51 +9,69 @@ export default function AddUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = () => {};
-
-  const setFile = () => {};
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("handlesubmit function in after event prevent");
+    console.log("e: " + JSON.stringify(e.data));
+    setError(false);
+    console.log("before try/catch: " + firstname, lastname, email, password);
+    try {
+      console.log("try in");
+      const res = await axios.post(
+        "http://localhost:3000/homeserver/api/auth/signup",
+        {
+          firstname,
+          lastname,
+          email,
+          password,
+          status,
+        }
+      );
+      console.log("res: " + res);
+      console.log("after try: " + firstname, lastname, email, password, status);
+      alert("User is created!");
+      res.data && window.location.replace("/admin/manageUser");
+    } catch (err) {
+      console.log("catch in");
+      console.log(err);
+      setError(true);
+    }
+  };
   return (
-    <div className="settings">
-      <div className="settings_title_div">
-        <span className="settings_title">Add User</span>
+    <div className="addUser">
+      <div className="addUser_title_div">
+        <span className="addUser_title">Add User</span>
       </div>
-      <div className="settings_div">
-        <form className="settings_form" onSubmit={handleSubmit}>
-          <div className="settings_pp">
+      <div className="addUser_div">
+        <form className="addUser_form" onSubmit={handleSubmit}>
+          <div className="addUser_pp">
             <label htmlFor="file_input">
               <img
-                className="settings_pp_topImg"
+                className="addUser_pp_topImg"
                 src={require("../../assets/img/defaultProfilePic.jpg")}
                 alt=""
               />
             </label>
-            <input
-              type="file"
-              id="file_input"
-              style={{ display: "none" }}
-              onChange={(e) => setFile(e.target.files[0])}
-            />
           </div>
-          <div className="settings_input">
-            <table className="settings_input_table">
+          <div className="addUser_input">
+            <table className="addUser_input_table">
               <tr>
                 <td>
-                  <label className="settings_label">First Name</label>
+                  <label className="addUser_label">First Name</label>
                   <input
                     type="text"
-                    className="settings_input"
+                    className="addUser_input"
                     required
                     onChange={(e) => setFirstname(e.target.value)}
                   />
                 </td>
                 <td>
-                  <label className="settings_label">Last Name</label>
+                  <label className="addUser_label">Last Name</label>
                   <input
                     type="text"
-                    className="settings_input"
+                    className="addUser_input"
                     required
                     onChange={(e) => setLastname(e.target.value)}
                   />
@@ -62,19 +79,19 @@ export default function AddUser() {
               </tr>
               <tr>
                 <td>
-                  <label className="settings_label">Email</label>
+                  <label className="addUser_label">Email</label>
                   <input
                     type="email"
-                    className="settings_input"
+                    className="addUser_input"
                     required
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </td>
                 <td>
-                  <label className="settings_label">Password</label>
+                  <label className="addUser_label">Password</label>
                   <input
                     type="password"
-                    className="settings_input"
+                    className="addUser_input"
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
@@ -82,52 +99,50 @@ export default function AddUser() {
               </tr>
               <tr>
                 <td>
-                  <label className="settings_label">Status</label>
-                  <div className="settings_status_div">
+                  <label className="addUser_label">Status</label>
+                  <div className="addUser_status_div">
                     <input
-                      className="settings_input_status"
+                      className="addUser_input_status"
                       type="radio"
                       name="status"
                       value="active"
                       required
                       onChange={(e) => setStatus(e.target.value)}
                     />
-                    <label className="settings_label_status">Active</label>
+                    <label className="addUser_label_status">Active</label>
                     <input
-                      className="settings_input_status"
+                      className="addUser_input_status"
                       type="radio"
                       name="status"
                       value="inactive"
                       onChange={(e) => setStatus(e.target.value)}
                     />
-                    <label className="settings_label_status">InActive</label>
+                    <label className="addUser_label_status">InActive</label>
                   </div>
                 </td>
               </tr>
             </table>
-            <div className="settings_btn_div">
+            <div className="addUser_btn_div">
               <button
-                className="settings_btn"
-                id="settings_btn_update"
+                className="addUser_btn"
+                id="addUser_btn_update"
                 type="submit"
               >
-                Update
+                Create
               </button>
               <Link className="link" to="/">
                 <button
-                  className="settings_btn"
-                  id="settings_btn_cancel"
+                  className="addUser_btn"
+                  id="addUser_btn_cancel"
                   type="submit"
                 >
                   Cancel
                 </button>
               </Link>
             </div>
-            {success && (
-              <span className="setting_msg">Account has been created!</span>
-            )}
           </div>
         </form>
+        {error && <span className="error_msg">Email is already taken</span>}
       </div>
     </div>
   );

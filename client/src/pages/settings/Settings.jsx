@@ -35,7 +35,9 @@ export default function Settings() {
       updatedUser.profilePic = filename;
       try {
         await axios.post("http://localhost:3000/homeserver/api/upload", data);
-      } catch (err) {}
+      } catch (err) {
+        console.log("err: " + err);
+      }
     }
     try {
       const res = await axios.put(
