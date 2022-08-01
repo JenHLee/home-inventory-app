@@ -10,6 +10,7 @@ import Single from "./pages/single/Single";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
+import ManageUser from "./pages/admin/manageUser/ManageUser";
 
 function App() {
   const { user } = useContext(Context);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signin" element={user ? <Home /> : <Signin />} />
         <Route path="/item/:itemId" element={<Single />}/>
         <Route path="/settings" element={user ? <Settings /> : <Signup />} />
+        <Route path="/admin/manageUser" element={<ManageUser />} />
       </Routes>
     </BrowserRouter> //need to be one div
   );

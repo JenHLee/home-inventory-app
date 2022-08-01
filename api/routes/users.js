@@ -23,6 +23,7 @@ router.put("/:id", async (req, res) => {
       //{new:true} -> makes updatedUser -> sent as a new User
       res.status(200).json(updatedUser);
     } catch (err) {
+      console.log("errors: " + err);
       res.status(500).json(err);
       //when req is not working
     }
