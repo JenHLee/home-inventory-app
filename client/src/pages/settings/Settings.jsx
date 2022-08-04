@@ -2,6 +2,7 @@ import "./settings.css";
 import { useContext, useState } from "react";
 import Context from "../../context/Context";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Settings() {
   const [file, setFile] = useState(null);
@@ -16,7 +17,7 @@ export default function Settings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e);
+    console.log("e: " + e);
     dispatch({ type: "UPDATE_START" });
     const updatedUser = {
       userId: user._id,
@@ -128,24 +129,24 @@ export default function Settings() {
               <tr>
                 <td>
                   <label className="settings_label">Status</label>
-
-                  <input
-                    type="radio"
-                    name="status"
-                    value="active"
-                    checked="checked"
-                    onChange={(e) => setStatus(e.target.value)}
-                  />
-                  <label className="settings_label_status">Active</label>
-
-                  <input
-                    type="radio"
-                    name="status"
-                    value="inactive"
-                    onChange={(e) => setStatus(e.target.value)}
-                  />
-
-                  <label className="settings_label_status">InActive</label>
+                  <div className="settings_status_div">
+                    <input
+                      className="settings_input_status"
+                      type="radio"
+                      name="status"
+                      value="active"
+                      onChange={(e) => setStatus(e.target.value)}
+                    />
+                    <label className="settings_label_status">Active</label>
+                    <input
+                      className="settings_input_status"
+                      type="radio"
+                      name="status"
+                      value="inactive"
+                      onChange={(e) => setStatus(e.target.value)}
+                    />
+                    <label className="settings_label_status">InActive</label>
+                  </div>
                 </td>
               </tr>
             </table>
@@ -157,17 +158,23 @@ export default function Settings() {
               >
                 Update
               </button>
-              <button
-                className="settings_btn"
-                id="settings_btn_cancel"
-                type="submit"
-              >
-                Cancel
-              </button>
+              <Link className="link" to="/">
+                <button
+                  className="settings_btn"
+                  id="settings_btn_cancel"
+                  type="submit"
+                >
+                  Cancel
+                </button>
+              </Link>
+              </div>
               {success && (
-                <span className="setting_msg">Account has been updated!</span>
+              <span className="setting_msg" >Account has been updated! 
+              <Link className="link" to="/">
+                <span className="setting_msg_gohome"> go home</span>
+                </Link>
+                </span>
               )}
-            </div>
           </div>
         </form>
       </div>

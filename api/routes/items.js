@@ -70,30 +70,30 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-/* 어드민에서 구현할 기능
+//어드민에서 구현할 기능
 //GET ALL POSTS 
- Blog's main page has to show the all posts 
 router.get("/", async (req, res) => {
-    const username = req.query.user;
+    const email = req.query.user;
     const catName = req.query.cat;
     try {
-        let posts; //It can changable
-        if (username) {
-            posts = await Post.find({ username });//Same as username:username 
+        let items; //It can changable
+        if (email) {
+            items = await Item.find({ email });//Same as username:username 
         } else if (catName) {
-            posts = await Post.find({
+            items = await Item.find({
                 categories: {
                     $in: [catName],//check if the catName is existed inside of categories array. 
                 },
             });
         } else {
-            posts = await Post.find();
+            items = await Item.find();
         }
-        res.status(200).json(posts);
+        console.log("items: " + items);
+        res.status(200).json(items);
     }
     catch (err) {
+        console.log("error: " + err);
         res.status(500).json(err);
     }
 });
-*/
 module.exports = router;

@@ -1,0 +1,37 @@
+.manage_user_h1 {
+    font-size: 40px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    padding-top: 80px;
+    color: var(--black-color);
+    font-family: var(--key-font);
+}
+
+.manage_user_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 30vw;
+}
+
+.user_add_btn_container {
+    display: flex;
+}
+
+.user_add_btn {
+    padding: 7px;
+    width: 90px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: solid 1px var(--point-color);
+    background-color: var(--point-color);
+    color: white;
+    align-items: flex-end;
+}
+
+.user_add_btn:hover {
+    background-color: white;
+    border: solid 1px var(--point-color);
+    color: var(--point-color);
+}

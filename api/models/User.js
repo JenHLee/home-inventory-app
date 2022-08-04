@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const UserSchema = new mongoose.Schema(
   {
     firstname: {
@@ -22,12 +21,17 @@ const UserSchema = new mongoose.Schema(
     status: {
       type: String,
       required: false,
-      default: "",
+      default: "active",
     },
     profilePic: {
       type: String,
       required: false,
       default: "",
+    },
+    role: {
+      type: Number,
+      required: false,
+      default: 2,
     },
   },
   { timestamps: true } //time (update, create time)

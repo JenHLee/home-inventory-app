@@ -80,7 +80,7 @@ export default function Signup() {
             SIGN UP
           </button>
         </form>
-      {error && <span className="error_msg">Something went wrong</span>}
+      {error && <span className="error_msg">Email is already taken</span>}
       </div>
     </div>
   );

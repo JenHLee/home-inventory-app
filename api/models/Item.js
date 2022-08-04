@@ -9,10 +9,9 @@ const ItemSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      unique: true,
     },
     price: {
-      type: Number,
+      type: String,
       required: true,
     },
     photo: {
@@ -24,6 +23,11 @@ const ItemSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
+    role: {
+      type: String,
+      required: true,
+    }
   },
   { timestamps: true } //time (update, create time)
 );

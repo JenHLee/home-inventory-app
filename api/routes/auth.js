@@ -40,10 +40,18 @@ router.post("/signin", async (req, res) => {
     //unique user find by email (unique key) in Mongo DB
     console.log("email user found");
 
+    //user status check
+    console.log("user status: " + user.status);
+    if(user.status == 'inactive'){
+      console.log("User account is inactive!");
+      return res.status(400).json("User account is inactive!");
+    }
+
     //if there is no user inside our DB, show 400 error code with Wrong Credentials! message.
     if (!user) {
       return res.status(400).json("Wrong user email!");
     }
+
 
     const validated = await bcrypt.compare(req.body.password, user.password);
     if (!validated) {
@@ -51,6 +59,9 @@ router.post("/signin", async (req, res) => {
     }
     //!validated && res.status(400).json("Wrong password!");
     //validate is not working -> return -> try console.log line by line
+
+    const userStatus = user.status;
+    console.log("userStatus: " + userStatus);
 
     const { password, ...others } = user._doc;
     return res.status(200).json(others);

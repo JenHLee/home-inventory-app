@@ -44,5 +44,5 @@ app.use("/api/categories", categoryRoute);
 
 //PORT NUMBER
 app.listen("5000", () => {
-  console.log("Backend is running");
+  console.log("Backend is running on port 5000");
 });

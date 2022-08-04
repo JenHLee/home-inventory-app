@@ -10,14 +10,15 @@ export default function Home() {
 
   useEffect(() => {
     const fetchitems = async () => {
-      const res = await axios.get("/items" + search);
+      console.log("fetch item in");
+      const res = await axios.get("http://localhost:3000/homeserver/api/items" + search);
       setItems(res.data);
     };
     fetchitems();
   }, [search]);
   return (
     <>
-      <div className="home">
+      <div className="inventory">
         <Items items={items} />
       </div>
     </>

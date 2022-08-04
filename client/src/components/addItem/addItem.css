@@ -1,4 +1,4 @@
-.singleDetail {
+.additem {
     padding-top: 200px;
     margin: auto;
     display: flex;
@@ -7,22 +7,26 @@
     flex-direction: row;
     font-family: var(--key-font);
 }
-.singleDetail_form{
+.additem_form{
     display: flex;
 }
 
-.singleDetail_item_img{
+.additem_img{
     width: 400px;
     height: 400px;
     object-fit: cover;
+    cursor: pointer;
 }
 
-.singleDetail_img_div{
+.additem_img:hover{
+    box-shadow: 0 1px 6px black;
+}
+.additem_img_div{
     flex: 1;
     padding-right: 10px;
 }
 
-.singleDetail_input_div{
+.additem_input_div{
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -51,49 +55,47 @@ select{
     font-size: 15px;
 }
 
-
-.singleDetail_btn_div{
+.additem_btn_div{
     padding-top: 10px;
     display: flex;
     margin: 0;
     align-items: center;
     justify-content: center;
 }
-.singleDetail_btn_update{
+
+.additem_btn{
     padding: 10px;
     width: 130px;
     margin: 10px;
     font-size: 18px;
     font-weight: bold;
+    }
+
+
+#additem_btn_submit{
     background-color: var(--point-color);
     color: white;
     border: solid 1px var(--point-color);
     cursor: pointer;
 }
 
-.singleDetail_btn_update:hover{
+#additem_btn_submit:hover{
     background-color: #4c402f;
     color: white;
     border: solid 1px var(--point-color);
     cursor: pointer;
 }
 
-.singleDetail_icon_div{
-    padding-top: 20px;
-    display: flex;
-    margin: 0;
-    align-items: right;
-    justify-content: right;
-}
-
-.singleDetail_icon{
-cursor: pointer;
-}
-
-.singleDetail_icon:hover{
+#additem_btn_cancel{
     color: var(--point-color);
+    background-color: white;
+    border: solid 1px var(--point-color);
+    cursor: pointer;
 }
 
-#singleDetail_icon_delete{
-    padding-left: 5px;
+#additem_btn_cancel:hover{
+    background-color: rgb(245, 237, 229);
+    color: var(--point-color);
+    border: solid 1px var(--point-color);
+    cursor: pointer;
 }

@@ -1,6 +1,7 @@
 import Item from "../item/Item";
 import "./items.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Link } from "react-router-dom";
 
 export default function Items({ items }) {
   return (
@@ -10,15 +11,14 @@ export default function Items({ items }) {
           <span className="items_category_selector">Category | All </span>
           <KeyboardArrowDownIcon className="items_icon" />
         </div>
-        <button className="items_add_btn">+ Add Item</button>
+        <Link className="link" to="/addItem">
+          <button className="items_add_btn">+ Add Item</button>
+        </Link>
       </div>
       <div className="items">
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        {items.map((i) => (
+          <Item key={i._id} item={i} />
+        ))}
       </div>
     </>
   );

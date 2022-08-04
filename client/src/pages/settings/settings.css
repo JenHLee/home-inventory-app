@@ -1,5 +1,5 @@
 .settings {
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     font: var(--main-font);
@@ -16,7 +16,7 @@
     margin: auto;
     padding: auto;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .settings_title {
@@ -36,7 +36,8 @@
 
 .settings_pp_topImg {
     width: 200px;
-    height: 200px;
+    height:200px;
+    object-fit: cover;
     border-radius: 100%;
     margin-bottom: 30px;
     cursor: pointer;
@@ -55,7 +56,7 @@
     color: var(--darkgrey-color);
     font-size: 15px;
     font-weight: 600;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .settings_label_status{
@@ -73,13 +74,18 @@
 }
 
 td{
-    padding: 10px;
+    padding: 8px;
 }
+
 
 .settings_label_status{
     padding-right: 10px;
     font-size: 15px;
     font-weight: 600;
+}
+
+.settings_input_status{
+    width: auto;
 }
 
 .settings_btn{
@@ -121,7 +127,15 @@ font-weight: bold;
 .setting_msg{
     display: flex;
     margin: 0;
-    padding-top: 10px;
+    padding-top: 5px;
     align-items: center;
     justify-content: center;
+}
+
+.setting_msg_gohome{
+    font-weight: bold;
+    text-decoration-line: underline;
+    cursor: pointer;
+    color: var(--point-color);
+    padding-left: 5px;
 }

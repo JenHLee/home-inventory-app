@@ -11,6 +11,7 @@
 
 .signup_title {
     font-size: 50px;
+    padding-top: 10px;
 }
 
 .signup_signin_txt{
@@ -25,7 +26,7 @@
 
 .signup_span{
     padding-top: 5px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
 }
 
 .signup_div{
@@ -53,7 +54,7 @@
 }
 
 .signup_form>label {
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .signup_input {
@@ -61,7 +62,7 @@
     width: 350px;
     background-color: white;
     border: solid 1px var(--point-color); 
-    margin-bottom: 20px;
+    margin-bottom: 3px;
 }
 
 .signup_btn {

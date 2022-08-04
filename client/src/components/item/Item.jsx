@@ -1,20 +1,37 @@
 import "./item.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 
-export default function item({ item }) {
+export default function Item({ item }) {
+  const { user, dispatch } = useContext(Context);
   const PF = "http://localhost:5000/images/";
   return (
-    <div className="item">
-      <img
-        className="item_img"
-        src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80"
-        alt=""
-      />
-      <div className="item_info">
-        <span className="item_category">Kitchen</span>
-        <span className="item_title">Island Table</span>
-        <span className="item_price">$500.00</span>
-      </div>
-    </div>
+    <>
+      {user ? (
+        user.email === item.email ? (
+          <div className="item">
+            <div className="item_info">
+              <Link to={`/item/${item._id}`} className="link">
+                <img
+                  className="item_img"
+                  src={PF + item.photo}
+                  alt={item.title}
+                />
+              </Link>
+                <div className="item_category_div">
+                  <span className="item_category" key={item.category}>
+                    {item.category}
+                  </span>
+                </div>
+                <span className="item_title" key={item.title}>
+                  {item.title}
+                </span>
+              <span className="item_price">{item.price}</span>
+            </div>
+          </div>
+        ) : null
+      ) : null}
+    </>
   );
 }
