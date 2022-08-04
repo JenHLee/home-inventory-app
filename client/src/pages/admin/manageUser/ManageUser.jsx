@@ -6,15 +6,18 @@ import { useEffect, useState } from "react";
 
 export default function ManageUser() {
   const [users, setUsers] = useState([]);
-  //const { search } = useLocation();
+  const { search } = useLocation();
 
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     const res = await axios.get("/users" + search);
-  //     setUsers(res.data);
-  //   };
-  //   fetchUsers();
-  // }, [search]);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const res = await axios.get(
+        "http://localhost:3000/homeserver/api/users/" + search
+      );
+      setUsers(res.data);
+      console.log(`ManageUser.jsx: useEffect: ${res.data}`);
+    };
+    fetchUsers();
+  }, [search]);
 
   return (
     <>
