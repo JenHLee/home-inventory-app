@@ -3,20 +3,22 @@ import "./user.css";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 
-export default function User({ userprop }) {
-  const { user, dispatch } = useContext(Context);
+export default function User({ user }) {
+  //const { user, dispatch } = useContext(Context);
   const PF = "http://localhost:5000/images/";
+  console.log("user: " + user);
+  //.log("userConxtext: " + userContext);
+ //console.log("user profilePic" + userContext.profilePic)
   return (
     <>
-     {user ? (
       <div className="user">
         <img
           className="user_img"
-          src={PF + userprop.profilePic}
-          alt={userprop.firstname}
+          src={PF + user.profilePic}
+          alt={user.firstname}
         />
         <div className="user_name_container">
-          <p className="user_name">{userprop.firstname}</p>
+          <p className="user_name">{user.firstname}</p>
         </div>
         <div className="manage_icon">
           <div className="edit_icon">
@@ -48,7 +50,7 @@ export default function User({ userprop }) {
             </svg>
           </div>
         </div>
-      </div>): null }
+      </div>
     </>
   );
 };
