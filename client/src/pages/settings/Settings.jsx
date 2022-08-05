@@ -94,6 +94,7 @@ export default function Settings() {
                     type="text"
                     className="settings_input"
                     placeholder={user.firstname}
+                    required
                     onChange={(e) => setFirstname(e.target.value)}
                   />
                 </td>
@@ -103,6 +104,7 @@ export default function Settings() {
                     type="text"
                     className="settings_input"
                     placeholder={user.lastname}
+                    required
                     onChange={(e) => setLastname(e.target.value)}
                   />
                 </td>
@@ -114,6 +116,7 @@ export default function Settings() {
                     type="email"
                     className="settings_input"
                     placeholder={user.email}
+                    required
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </td>
@@ -123,6 +126,7 @@ export default function Settings() {
                     type="password"
                     className="settings_input"
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </td>
               </tr>
@@ -135,6 +139,7 @@ export default function Settings() {
                       type="radio"
                       name="status"
                       value="active"
+                      required
                       onChange={(e) => setStatus(e.target.value)}
                     />
                     <label className="settings_label_status">Active</label>
@@ -167,14 +172,15 @@ export default function Settings() {
                   Cancel
                 </button>
               </Link>
-              </div>
-              {success && (
-              <span className="setting_msg" >Account has been updated! 
-              <Link className="link" to="/">
-                <span className="setting_msg_gohome"> go home</span>
+            </div>
+            {success && (
+              <span className="setting_msg">
+                Account has been updated!
+                <Link className="link" to="/">
+                  <span className="setting_msg_gohome"> go home</span>
                 </Link>
-                </span>
-              )}
+              </span>
+            )}
           </div>
         </form>
       </div>
