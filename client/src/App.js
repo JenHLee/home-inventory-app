@@ -9,6 +9,8 @@ import Single from "./pages/single/Single";
 import ManageCategory from "./pages/admin/manageCategory/ManageCategory";
 import ManageUser from "./pages/admin/manageUser/ManageUser";
 import AddItem from "./components/addItem/AddItem";
+import AddUser from "./components/addUser/AddUser";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
@@ -33,6 +35,7 @@ function App() {
         {/* didn't set admin page yet */}
         <Route path="/admin/manageCategory" element={<ManageCategory />} />
         <Route path="/admin/manageUser" element={<ManageUser />} />
+        <Route path="/admin/manageUser/addUser" element={<AddUser/>} />
       </Routes>
     </BrowserRouter> //need to be one div
   );
