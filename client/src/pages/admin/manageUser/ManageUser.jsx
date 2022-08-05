@@ -10,8 +10,11 @@ export default function ManageUser() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await axios.get("http://localhost:3000/homeserver/api/users" + search);
+      const res = await axios.get(
+        "http://localhost:3000/homeserver/api/users/" + search
+      );
       setUsers(res.data);
+      console.log(`ManageUser.jsx: useEffect: ${res.data}`);
     };
     fetchUsers();
   }, [search]);
