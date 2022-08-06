@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import Category from "../category/Category";
+import "./categories.css";
 
-function Categories() {
+export default function Categories({ categories }) {
   return (
-    <div>Categories</div>
-  )
+    <>
+      <div className="categories">
+        {categories.map((c) => (
+          <Category key={c._id} categoryprop={c} />
+        ))}
+      </div>
+    </>
+  );
 }
-
-export default Categories

@@ -1,0 +1,12 @@
+.categories {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.add_category_input {
+    
+}

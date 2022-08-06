@@ -1,0 +1,36 @@
+.category {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding:1.5rem;
+    width: 100%;
+}
+
+.category_name_container {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    width: 40%;
+    padding-left: 4rem;
+}
+
+.manage_icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_icon {
+    padding-left: 10px;
+}
+
+.svg_icon {
+    color: var(--point-color);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.svg_icon:hover {
+    color: #423728;
+}

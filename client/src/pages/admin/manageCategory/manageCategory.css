@@ -13,6 +13,7 @@
   margin-bottom: 20px;
   padding-top: 80px;
   color: var(--black-color);
+  font-family: var(--key-font);
 }
 
 .manageCategory_top {
@@ -43,7 +44,7 @@
   border: solid 1px var(--point-color);
   color: var(--point-color);
 }
-
+/* 
 .manageCategory_table_div{
   padding-top: 0;
 }
@@ -58,4 +59,4 @@
   border: 1px solid grey;
   color: grey;
   height: 30px;
-}
+} */
