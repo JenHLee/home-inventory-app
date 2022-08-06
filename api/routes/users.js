@@ -5,7 +5,8 @@ const bcrypt = require("bcrypt");
 //UPDATE
 //to update, use put method
 router.put("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id) {
+  if (req.body.userId === req.params.id || req.body.role === 1 || req.body.role === 2) {
+    console.log("req.body.role: " + req.body.role);
     //params is :id
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
@@ -33,21 +34,17 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-/* 어드민에서 구현할 기능
-//DELETE
-
-after delete user -> sent a message
-we need to delete all post of user (b/c even though we delete the user, we can still see the post of user) 
-1. find user
-2. find all post of user
-3. delete all post of user
-
+//DELETE Post
+// after delete user -> sent a message
+// we need to delete all post of user (b/c even though we delete the user, we can still see the post of user) 
+// 1. find user
+// 2. find all post of user
+// 3. delete all post of user
 router.delete("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id) {
     try {
       const user = await User.findById(req.params.id);
       try {
-        await Post.deleteMany({ username: user.username });
+        // await User.deleteMany({ email: user.email });
         //check the condition username is same as a user.username, after it's true, delete it inside DB
         await User.findByIdAndDelete(req.params.id);
         res.status(200).json("User has been deleted...");
@@ -58,12 +55,9 @@ router.delete("/:id", async (req, res) => {
       //if(user){
       res.status(404).json("User not found!");
     }
-  } else {
-    res.status(401).json("You can delete only your account!");
-    //not allow
-  }
-});
-*/
+  } 
+);
+
 //GET USER
 router.get("/:id", async (req, res) => {
   try {

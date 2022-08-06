@@ -15,19 +15,19 @@ export default function ManageUser() {
         "http://localhost:3000/homeserver/api/users/" + search
       );
       setUsers(res.data);
-      console.log(`ManageUser.jsx: useEffect: ${res.data}`);
+      // console.log(`ManageUser.jsx: useEffect: ${res.data}`);
     };
     fetchUsers();
   }, [search]);
 
   return (
     <>
-      <div className="home">
+      <div className="manage_user">
         <div className="manage_user_top">
           <h1 className="manage_user_h1">Manage Users</h1>
           <div className="user_add_btn_container">
             <Link className="link" to="/admin/manageUser/addUser">
-              <button className="user_add_btn">Add User</button>
+              <button className="user_add_btn">+ Add User</button>
             </Link>
           </div>
         </div>

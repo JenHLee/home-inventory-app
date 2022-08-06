@@ -10,6 +10,7 @@ import ManageCategory from "./pages/admin/manageCategory/ManageCategory";
 import ManageUser from "./pages/admin/manageUser/ManageUser";
 import AddItem from "./components/addItem/AddItem";
 import AddUser from "./components/addUser/AddUser";
+import EditUser from "./components/editUser/EditUser";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
@@ -36,6 +37,7 @@ function App() {
         <Route path="/admin/manageCategory" element={<ManageCategory />} />
         <Route path="/admin/manageUser" element={<ManageUser />} />
         <Route path="/admin/manageUser/addUser" element={<AddUser/>} />
+        <Route path="/admin/manageUser/editUser" element={<EditUser/>} />
       </Routes>
     </BrowserRouter> //need to be one div
   );

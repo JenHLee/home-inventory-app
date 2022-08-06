@@ -13,9 +13,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("handlesubmit function in after event prevent");
-    console.log("e: " + e); // [object object]
-    //const obj = JSON.stringify(e);
-    // alert("e: " + JSON.parse(obj));
+    console.log("e: " + JSON.stringify(e.data));
     setError(false);
     console.log("before try/catch: " + firstname, lastname, email, password);
     try {

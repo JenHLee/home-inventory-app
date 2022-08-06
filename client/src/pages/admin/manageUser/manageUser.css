@@ -1,3 +1,15 @@
+.manage_user{
+    margin: auto;
+    background-color: white;
+    font-family: var(--key-font);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
 .manage_user_h1 {
     font-size: 40px;
     margin-left: 10px;

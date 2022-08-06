@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router";
 import "./manageCategory.css";
 import Categories from "../../../components/categories/Categories";
 import AddCategory from "../../../components/addCategory/AddCategory";
-import { useLocation } from "react-router-dom";
 
 function ManageCategory() {
   const [categories, setCategories] = useState([]);
