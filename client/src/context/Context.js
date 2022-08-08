@@ -1,16 +1,15 @@
 import { createContext, useEffect, useReducer} from "react";
 import Reducer from "./Reducer";
 
-// - `createContext` : context 객체를 생성한다.
-// - `Provider` : 생성한 context를 하위 컴포넌트에게 전달하는 역할을 한다.
-// - `Consumer` : context의 변화를 감시하는 컴포넌트이다.
+// - `createContext` : context 객체를 생성한다.
+// - `Provider` : 생성한 context를 하위 컴포넌트에게 전달하는 역할을 한다.
+// - `Consumer` : context의 변화를 감시하는 컴포넌트이다.
 
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem("user")) || null, //If there is user inside of localStorage, then getItem user/ but no user, then null
     isFetching: false, 
     error: false,
 };
-
 export const Context = createContext(INITIAL_STATE);
 export const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);

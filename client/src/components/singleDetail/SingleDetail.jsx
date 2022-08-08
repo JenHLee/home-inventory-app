@@ -5,7 +5,7 @@ import Context from "../../context/Context";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./singleDetail.css";
-//import "./singleDetail.css";
+import Swal from "sweetalert2";
 
 export default function SingleDetail() {
   const location = useLocation();
@@ -40,21 +40,46 @@ export default function SingleDetail() {
       axios.delete(`http://localhost:3000/homeserver/api/items/${item._id}`, {
         data: { email: user.email },
       });
-      window.location.replace("/inventory");
-    } catch (err) {}
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Item is deleted in successfuly",
+      });
+      if (Toast.fire) {
+        window.location.replace("/inventory");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }; //no need to use async, await
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/homeserver/api/items/${item._id}`, {
-        email: user.email,
-        category,
-        title,
-        price,
-      });
-      //window.location.reload();
+      await axios.put(
+        `http://localhost:3000/homeserver/api/items/${item._id}`,
+        {
+          email: user.email,
+          category,
+          title,
+          price,
+        }
+      );
       setUpdateMode(false);
-    } catch (err) {}
+
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -74,7 +99,9 @@ export default function SingleDetail() {
             <label className="singleDetail_input">Category</label>
             <select onChange={(e) => setCategory(e.target.value)}>
               <option>{category}</option>
-              <option>--------------------------------------------------------</option>
+              <option>
+                --------------------------------------------------------
+              </option>
               <option value={"kitchen"}>kitchen</option>
               <option value={"bathroom"}>bathroom</option>
               <option value={"living room"}>living room</option>
@@ -95,7 +122,7 @@ export default function SingleDetail() {
             />
             <label className="singleDetail_input">Price</label>
             <input
-              type="number"
+              type="text"
               className="singleDetail_input"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
@@ -128,7 +155,7 @@ export default function SingleDetail() {
             />
             <label className="singleDetail_input">Price</label>
             <input
-              type="number"
+              type="text"
               className="singleDetail_input"
               value={price}
               disabled

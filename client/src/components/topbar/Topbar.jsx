@@ -3,18 +3,39 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./topbar.css";
+import Swal from "sweetalert2";
 
 function Topbar() {
   const { user, dispatch } = useContext(Context);
-// 디스패치 ( dispatch )
-// 디스패치는 스토어의 내장 함수 중 하나로 리듀서에게 Action 을 발생하라고 시키는 것. 
-// dispatch 함수는 dispatch(action) 이런 식으로 Action 을 인자로 넘긴다.
+  // 디스패치 ( dispatch )
+  // 디스패치는 스토어의 내장 함수 중 하나로 리듀서에게 Action 을 발생하라고 시키는 것.
+  // dispatch 함수는 dispatch(action) 이런 식으로 Action 을 인자로 넘긴다.
   const PF = "http://localhost:5000/images/";
 
   const handleLogout = () => {
     // console.log("handleLogout in");
     dispatch({ type: "LOGOUT" });
     //LOGOUT이 액션
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "Successfully logged out",
+    });
+
+    if (Toast.fire) {
+      window.location.replace("/");
+    }
   };
 
   return (
@@ -36,8 +57,7 @@ function Topbar() {
             </Link>
           </li>
           {user ? (
-            user.role === 1 ||
-            user.role === 3 ? (
+            user.role === 1 || user.role === 3 ? (
               <>
                 <li className="topListItem" id="listItemFourth">
                   <Link className="link" to="/admin/manageCategory">
@@ -61,7 +81,7 @@ function Topbar() {
           {user ? (
             <li className="topListItem" id="listItemFourth">
               <span className="link" onClick={handleLogout}>
-                {user && "LOGOUT"}
+                LOGOUT
               </span>
             </li>
           ) : (

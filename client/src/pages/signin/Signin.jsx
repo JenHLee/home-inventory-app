@@ -24,15 +24,14 @@ export default function Signin() {
       );
       console.log("user status: " + JSON.stringify(res.data.status));
       console.log("email/password: " + JSON.stringify(res.data));
-      
+
       let userState = JSON.stringify(res.data.status);
       console.log("userState: " + userState);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-
     } catch (err) {
       setError(err.response.data.message);
       dispatch({ type: "LOGIN_FAILURE" });
-       }
+    }
   };
 
   return (
@@ -41,7 +40,7 @@ export default function Signin() {
         <form className="signin_form" onSubmit={handleSubmit}>
           <span className="signin_title">Welcome back!</span>
           <span className="signin_span">
-            If you don't have an account?
+            You don't have an account?
             <Link className="link" to="/signup">
               <span className="signin_signup_txt"> Sign up</span>
             </Link>
@@ -66,9 +65,19 @@ export default function Signin() {
             SIGN IN
           </button>
         </form>
-        {error && <span className="signin_error_msg">{error} <br></br>
-        any question?  
-        <a href="mailto:cprg352+admin@gmail.com" className="signin_error_msg_contactus"> contact us</a></span>}
+        {error && (
+          <span className="signin_error_msg">
+            {error} <br></br>
+            any question?
+            <a
+              href="mailto:cprg352+admin@gmail.com"
+              className="signin_error_msg_contactus"
+            >
+              {" "}
+              contact us
+            </a>
+          </span>
+        )}
       </div>
       <div className="signin_img"></div>
     </div>

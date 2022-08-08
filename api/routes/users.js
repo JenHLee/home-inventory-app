@@ -5,8 +5,9 @@ const bcrypt = require("bcrypt");
 //UPDATE
 //to update, use put method
 router.put("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.role === 1 || req.body.role === 2) {
-    console.log("req.body.role: " + req.body.role);
+  if (req.body.userId === req.params.id || req.body.adminRole === 1 || req.body.adminRole === 3) {
+    console.log("backend user update in");
+    console.log("req.body.role: " + req.body.adminRole);
     //params is :id
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
