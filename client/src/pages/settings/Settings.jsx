@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import Context from "../../context/Context";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Settings() {
   const [file, setFile] = useState(null);
@@ -11,7 +12,7 @@ export default function Settings() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
   const { user, dispatch } = useContext(Context);
   const PF = "http://localhost:3000/homeserver/images/";
 
@@ -44,7 +45,23 @@ export default function Settings() {
         "http://localhost:3000/homeserver/api/users/" + user._id,
         updatedUser
       );
-      setSuccess(true);
+      // setSuccess(true);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: "success",
+        title: "User account is updated",
+      });
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
     } catch (err) {
       dispatch({ type: "UPDATE_FAILURE" });
@@ -175,14 +192,14 @@ export default function Settings() {
                 </button>
               </Link>
             </div>
-            {success && (
+            {/* {success && (
               <span className="setting_msg">
                 Account has been updated!
                 <Link className="link" to="/">
                   <span className="setting_msg_gohome"> go home</span>
                 </Link>
               </span>
-            )}
+            )} */}
           </div>
         </form>
       </div>

@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import { Link } from "react-router-dom";
 import "./addItem.css";
+import Swal from "sweetalert2";
 
 export default function AddItem() {
   const [category, setCategory] = useState("");
@@ -10,7 +11,7 @@ export default function AddItem() {
   const [price, setPrice] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,9 +31,9 @@ export default function AddItem() {
       newItem.photo = filename;
       try {
         await axios.post("http://localhost:3000/homeserver/api/upload", data);
-        console.log("data: " + data);
+        // console.log("data: " + data);
       } catch (err) {
-        console.log(JSON.stringify(err.data));
+       console.log("error: " + err);
       } 
     } 
     try {
@@ -41,8 +42,29 @@ export default function AddItem() {
         newItem
       );
       // console.log("res: " + res);
-      window.location.replace("/inventory");
-    } catch (err) {}
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: "success",
+        title: "New item is added in successfuly",
+      });
+
+      if (Toast.fire) {
+        window.location.replace("/inventory");
+      };
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

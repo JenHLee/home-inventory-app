@@ -5,10 +5,10 @@ import { Context } from "../../context/Context";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function User({ userprop }) {
-  const { user, dispatch } = useContext(Context);
+  const { user } = useContext(Context);
   const PF = "http://localhost:5000/images/";
   // console.log(`User.jsx 's user ${user.firstname}`);
   // console.log(`User.jsx 's userprop ${userprop.firstname}`);
@@ -16,17 +16,20 @@ export default function User({ userprop }) {
   const handleDelete = (e) => {
     e.preventDefault();
     try {
-      console.log("userprop.email: " + userprop.email);
-      console.log("userprop._id: " + userprop._id);
-      axios.delete(`http://localhost:3000/homeserver/api/users/${userprop._id}`, {
-        data: { userId: userprop._id },
-      });
+      // console.log("userprop.email: " + userprop.email);
+      // console.log("userprop._id: " + userprop._id);
+      axios.delete(
+        `http://localhost:3000/homeserver/api/users/${userprop._id}`,
+        {
+          data: { userId: userprop._id },
+        }
+      );
       alert("User is deleted!");
       window.location.replace("/admin/manageUser");
     } catch (err) {
-    console.log("err : " + err);
-  }
-}; 
+      console.log("err : " + err);
+    }
+  };
   return (
     <>
       {user ? (
@@ -40,15 +43,21 @@ export default function User({ userprop }) {
             <span className="user_name">
               {userprop.firstname} {userprop.lastname}
             </span>
-            <span className="user_email">{userprop.email}</span> 
+            <span className="user_email">{userprop.email}</span>
           </div>
           <div className="manage_icon">
-            <Link className="link" to="/admin/manageUser/editUser"> 
-            <EditIcon className="manage_icon_edit" key={userprop._id} userprop={userprop} />
+            <Link
+              className="link"
+              to={"/admin/manageUser/editUser/" + userprop._id}
+              state={{ userprop }}
+            >
+              <EditIcon
+                className="manage_icon_edit"
+                key={userprop._id}
+                userprop={userprop}
+              />
             </Link>
-            <DeleteIcon className="manage_icon_delete" 
-            onClick={handleDelete}
-            />
+            <DeleteIcon className="manage_icon_delete" onClick={handleDelete} />
           </div>
         </div>
       ) : null}
