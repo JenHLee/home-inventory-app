@@ -8,10 +8,10 @@ import AddCategory from "../../../components/addCategory/AddCategory";
 
 function ManageCategory() {
   const [categories, setCategories] = useState([]);
-  const [addUserClicked, setAddUserClicked] = useState("false");
+  const [addCategoryClicked, setAddCategoryClicked] = useState(false);
 
-  const addUser = () => {
-    setAddUserClicked("true");
+  const addCategory = () => {
+    setAddCategoryClicked(true);
   };
 
   const handleEdit = () => {};
@@ -41,17 +41,13 @@ function ManageCategory() {
     const res = await axios.get(
       "http://localhost:3000/homeserver/api/categories/"
     );
-    //setCategories(res.data);
     return res.data;
   };
 
   useEffect(() => {
-    // console.log("useEffect in");
     fetchCategories().then((data) => {
       setCategories(data);
     });
-
-    // console.log(`categories: ${JSON.stringify(categories)}`);
   }, []);
 
   return (
@@ -61,12 +57,12 @@ function ManageCategory() {
         <div className="manageCategory_top">
           <h1 className="manageCategory_h1">Manage Categories</h1>
           <div className="manageCategory_btn_div">
-            <button className="manageCategory_btn_add" onClick={addUser}>
+            <button className="manageCategory_btn_add" onClick={addCategory}>
               + Add Category
             </button>
           </div>
         </div>
-        {addUserClicked === "true" ? (
+        {addCategoryClicked === true ? (
           <AddCategory handleSubmit={handleSubmit} />
         ) : null}
         {categories ? (
