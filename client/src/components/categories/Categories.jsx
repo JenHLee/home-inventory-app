@@ -7,8 +7,8 @@ export default function Categories(props) {
     props.handleEdit(category, editedCategoryName);
   };
 
-  const handleDelete = () => {
-    props.handleDelete();
+  const handleDelete = (category) => {
+    props.handleDelete(category);
   };
 
   return (

@@ -27,13 +27,27 @@ function ManageCategory() {
         fetchCategories().then((data) => {
           setCategories(data);
         });
-      } else {
-        alert("Category is not edited");
       }
-    } catch (err) {}
+    } catch (err) {
+      alert("Category is not edited");
+    }
   };
 
-  // const handleDelete = () => {};
+  const handleDelete = async (category) => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:3000/homeserver/api/categories/${category._id}`
+      );
+      if (res.status === 200) {
+        alert("Category deleted");
+        fetchCategories().then((data) => {
+          setCategories(data);
+        });
+      }
+    } catch (err) {
+      alert("Category is not deleted");
+    }
+  };
 
   const handleSubmit = async (name) => {
     const newCategory = { name };
@@ -86,7 +100,7 @@ function ManageCategory() {
           <Categories
             categories={categories}
             handleEdit={handleEdit}
-            // handleDelete={handleDelete}
+            handleDelete={handleDelete}
           />
         ) : (
           <span>Category is empty</span>

@@ -14,6 +14,10 @@ export default function Category(props) {
     setEditCategoryClicked(false);
   };
 
+  const handleDelete = () => {
+    props.handleDelete(props.category);
+  };
+
   return (
     <>
       {props.category ? (
@@ -35,7 +39,10 @@ export default function Category(props) {
                 setEditCategoryClicked(true);
               }}
             />
-            <DeleteIcon className="svg_icon delete_icon" />
+            <DeleteIcon
+              className="svg_icon delete_icon"
+              onClick={handleDelete}
+            />
           </div>
         </div>
       ) : null}
