@@ -3,8 +3,8 @@ import Category from "../category/Category";
 import "./categories.css";
 
 export default function Categories(props) {
-  const handleEdit = () => {
-    props.handleEdit();
+  const handleEdit = (category, editedCategoryName) => {
+    props.handleEdit(category, editedCategoryName);
   };
 
   const handleDelete = () => {
@@ -17,7 +17,7 @@ export default function Categories(props) {
         {props.categories.map((c) => (
           <Category
             key={c._id}
-            categoryprop={c}
+            category={c}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
           />

@@ -26,4 +26,21 @@ router.get("/", async (req, res) => {
     }
 });
 
+//UPDATE CATEGORY
+router.put("/:id", async (req,res)=> {
+    try {
+        //const category = await Category.findById(req.params.id);
+        console.log(req.body);
+
+        const updatedCategory = await Category.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body,
+            }, {new: true}
+        );
+        res.status(200).json(updatedCategory);
+    } catch(err) {
+        res.status(500).json(err);}
+});
+
 module.exports = router;

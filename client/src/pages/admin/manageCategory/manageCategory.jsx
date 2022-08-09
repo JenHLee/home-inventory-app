@@ -14,7 +14,24 @@ function ManageCategory() {
     setAddCategoryClicked(true);
   };
 
-  const handleEdit = () => {};
+  const handleEdit = async (category, name) => {
+    const editedCategory = { name };
+    console.log("ManageCategory: " + name);
+    try {
+      const res = await axios.put(
+        `http://localhost:3000/homeserver/api/categories/${category._id}`,
+        editedCategory
+      );
+      if (res.status === 200) {
+        alert("Category edited");
+        fetchCategories().then((data) => {
+          setCategories(data);
+        });
+      } else {
+        alert("Category is not edited");
+      }
+    } catch (err) {}
+  };
 
   // const handleDelete = () => {};
 
