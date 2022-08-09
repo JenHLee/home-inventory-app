@@ -7,7 +7,7 @@ export default function AddCategory(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newCategoryName = inputRef.current.value;
-    props.handleSubmit(newCategoryName);
+    newCategoryName && props.handleSubmit(newCategoryName);
     formRef.current.reset();
   };
 
