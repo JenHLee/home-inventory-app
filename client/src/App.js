@@ -48,11 +48,12 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route
           path="/inventory"
-          element={regularUser ? <Inventory /> : <Signup />}
+          element={user ? <Inventory /> : <Signup />}
         />
-        <Route path="/signup" element={regularUser ? <Home /> : <Signup />} />
-        <Route path="/signin" element={regularUser ? <Home /> : <Signin />} />
-        <Route path="/item/:itemId" element={<Single />} />
+        <Route path="/signup" element={user ? <Home /> : <Signup />} />
+        <Route path="/signin" element={user ? <Home /> : <Signin />} />
+        <Route path="/item/:itemId" element={user? <Single /> : <Signin />} />
+        {/* <Route path="/inventory/:categoryName" element={user? <Inventory /> : <Signin />} /> */}
         <Route
           path="/addItem"
           element={regularUser ? <AddItem /> : <Signin />}
