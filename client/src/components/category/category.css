@@ -14,6 +14,15 @@
     padding-left: 4rem;
 }
 
+.category_name {
+    padding: 10px;
+}
+
+[contenteditable="true"] {
+    border-bottom: 2px solid var(--point-color);
+    outline: none;
+}
+
 .manage_icon {
     display: flex;
     flex-direction: row;
