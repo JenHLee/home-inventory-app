@@ -1,0 +1,36 @@
+.inventory_top {
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 30vw;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.inventory_category_selector {
+    text-align: left;
+    font-weight: bold;
+}
+
+.inventory_icon {
+    cursor: pointer;
+}
+
+.inventory_add_btn {
+    padding: 7px;
+    width: 90px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: solid 1px var(--point-color);
+    background-color: var(--point-color);
+    color: white;
+
+}
+
+.inventory_add_btn:hover {
+    background-color: white;
+    border: solid 1px var(--point-color);
+    color: var(--point-color);
+}

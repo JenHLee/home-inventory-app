@@ -4,6 +4,8 @@ import "./inventory.css";
 import axios from "axios";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Link } from "react-router-dom";
 // import { useLocation } from "react-router";
 
 export default function Home() {
@@ -26,6 +28,15 @@ export default function Home() {
   }, []);
   return (
     <>
+      <div className="inventory_top">
+        <div className="inventory_top_left">
+          <span className="inventory_category_selector">Category | All </span>
+          <KeyboardArrowDownIcon className="inventory_icon" />
+        </div>
+        <Link className="link" to="/addItem">
+          <button className="inventory_add_btn">+ Add Item</button>
+        </Link>
+      </div>
       <div className="inventory">
         <Items items={items} />
       </div>
