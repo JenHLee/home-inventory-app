@@ -12,13 +12,22 @@ export default function Home() {
   const [items, setItems] = useState([]);
   const { user } = useContext(Context);
   const [categories, setCategories] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState();
   // const search  = useLocation();
 
-  const fetchCategories = async () => {
+  const handleCategoryClicked = (e) => {
+    if(e.target.innerText==='All') {
+      window.location.replace("/inventory");
+    }
+    filterCategories(e.target.innerText);
+  };
+
+  const filterCategories = async (filter) => {
     const res = await axios.get(
-      "http://localhost:3000/homeserver/api/categories/"
+      `http://localhost:3000/homeserver/api/items/filter/${filter}`
     );
-    return res.data;
+    setCategoryFilter(filter);
+    setItems(res.data);
   };
 
   useEffect(() => {
@@ -36,11 +45,7 @@ export default function Home() {
         "http://localhost:3000/homeserver/api/items",
         { params: { email: user.email, role: user.role } }
       );
-      // console.log(`${JSON.stringify(search)}`);
       setItems(res.data);
-      fetchCategories().then((data) => {
-        setCategories(data);
-      });
     };
     fetchitems();
   }, []);
@@ -49,18 +54,25 @@ export default function Home() {
       <div className="inventory_top">
         <div className="inventory_top_left">
           <div className="inventory_category_selector">
-            <span>Category | All </span>
+            <span>Category | {categoryFilter? categoryFilter: "All"}</span>
             <KeyboardArrowDownIcon className="inventory_icon" />
           </div>
           <div className="inventory_category_list">
             <ul>
-              {/* {categories.map((c) => (
-                <li>{c.name}</li>
-              ))} */}
-
+              <Link to={"/inventory"} className="link">
+                <li className="sidebarListItem" onClick={handleCategoryClicked}>All</li>
+              </Link>
               {categories.map((c) => (
-                <Link key={c.name} to={`/?cat=${c.name}`} className="link">
-                  <li className="sidebarListItem" key={"c.name"}>
+                <Link
+                  key={c.name}
+                  to={`/inventory/?cat=${c.name}`}
+                  className="link"
+                >
+                  <li
+                    className="sidebarListItem"
+                    key={"c.name"}
+                    onClick={handleCategoryClicked}
+                  >
                     {c.name}
                   </li>
                 </Link>
