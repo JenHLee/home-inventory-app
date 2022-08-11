@@ -1,5 +1,6 @@
 import AddIcon from "@mui/icons-material/Add";
 import { useRef } from "react";
+import "./addCategory.css";
 
 export default function AddCategory(props) {
   const inputRef = useRef();
@@ -12,7 +13,7 @@ export default function AddCategory(props) {
   };
 
   return (
-    <div className="category">
+    <div className="addCategory">
       <div className="category_name_container">
         <form className="addcategory_form" ref={formRef}>
           <input

@@ -44,6 +44,7 @@ export default function User({ userprop }) {
               {userprop.firstname} {userprop.lastname}
             </span>
             <span className="user_email">{userprop.email}</span>
+            <span className="user_status">{userprop.status}</span>
           </div>
           <div className="manage_icon">
             <Link

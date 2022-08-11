@@ -5,6 +5,7 @@ import axios from "axios";
 import "./manageCategory.css";
 import Categories from "../../../components/categories/Categories";
 import AddCategory from "../../../components/addCategory/AddCategory";
+import Swal from "sweetalert2";
 
 function ManageCategory() {
   const [categories, setCategories] = useState([]);
@@ -16,20 +17,50 @@ function ManageCategory() {
 
   const handleEdit = async (category, name) => {
     const editedCategory = { name };
-    console.log("ManageCategory: " + name);
+    // console.log("ManageCategory: " + name);
     try {
       const res = await axios.put(
         `http://localhost:3000/homeserver/api/categories/${category._id}`,
         editedCategory
       );
       if (res.status === 200) {
-        alert("Category edited");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Category is edited in successfuly",
+        });
         fetchCategories().then((data) => {
           setCategories(data);
         });
       }
     } catch (err) {
-      alert("Category is not edited");
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: "error",
+        title: "Category is not edited",
+      });
     }
   };
 
@@ -39,13 +70,43 @@ function ManageCategory() {
         `http://localhost:3000/homeserver/api/categories/${category._id}`
       );
       if (res.status === 200) {
-        alert("Category deleted");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Category is deleted in successfuly",
+        });
         fetchCategories().then((data) => {
           setCategories(data);
         });
       }
     } catch (err) {
-      alert("Category is not deleted");
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: "error",
+        title: "Category is not deleted",
+      });
     }
   };
 
@@ -58,14 +119,48 @@ function ManageCategory() {
         newCategory
       );
       if (res.status === 200) {
-        alert("Category added");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Category is added in successfuly",
+        });
+        window.scrollTo(0, document.body.scrollHeight);
+
         fetchCategories().then((data) => {
           setCategories(data);
         });
       } else {
-        alert("Category is not added");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Category is not added",
+        });
       }
-    } catch (err) {}
+    } catch (err) {
+      // console.log(err);
+    }
   };
 
   const fetchCategories = async () => {
@@ -83,7 +178,7 @@ function ManageCategory() {
 
   return (
     <>
-      {console.log(categories)}
+      {/* {console.log(categories)} */}
       <div className="home">
         <div className="manageCategory_top">
           <h1 className="manageCategory_h1">Manage Categories</h1>

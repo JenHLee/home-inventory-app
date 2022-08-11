@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Context } from "../../context/Context";
 import { Link } from "react-router-dom";
 import "./addItem.css";
 import Swal from "sweetalert2";
+import CategoryList from "../categoryList/CategoryList";
 
 export default function AddItem() {
   const [category, setCategory] = useState("");
@@ -11,7 +12,21 @@ export default function AddItem() {
   const [price, setPrice] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
+  const [categories, setCategories] = useState([]);
   // const [error, setError] = useState(false);
+
+  useEffect(() => {
+    fetchCategories().then((data) => {
+      setCategories(data);
+    });
+  }, []);
+
+  const fetchCategories = async () => {
+    const res = await axios.get(
+      "http://localhost:3000/homeserver/api/categories/"
+    );
+    return res.data;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +38,26 @@ export default function AddItem() {
       email: user.email,
       role: user.role,
     };
-    if (file) {
+    if (file == null) {  
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+      Toast.fire({
+      icon: "error",
+      title: "Item's photo is required",
+    });
+  }
+    
+    
+    else {
       const data = new FormData();
       const filename = Date.now() + file.name; //create new file name using date (random)
       data.append("name", filename);
@@ -58,28 +92,9 @@ export default function AddItem() {
         };
       } catch (err) {
         console.log(err);
-      }
-      // console.log("data: " + data);
-      
-    } else {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener("mouseenter", Swal.stopTimer);
-          toast.addEventListener("mouseleave", Swal.resumeTimer);
-        },
-      });
-
-      Toast.fire({
-        icon: "error",
-        title: "Item's photo is required!",
-      });      
+      }      
     }
-  };
+    };
 
   return (
     <div className="additem">
@@ -111,19 +126,11 @@ export default function AddItem() {
         <div className="additem_input_div">
           <label className="additem_input">Category</label>
           <select required onChange={(e) => setCategory(e.target.value)}>
-            <option>{category}</option>
+            <option>Select your option</option>
             <option>
               --------------------------------------------------------
             </option>
-            <option value={"kitchen"}>kitchen</option>
-            <option value={"bathroom"}>bathroom</option>
-            <option value={"living room"}>living room</option>
-            <option value={"basement"}>basement</option>
-            <option value={"garage"}>garage</option>
-            <option value={"office"}>office</option>
-            <option value={"utility room"}>utility room</option>
-            <option value={"storage"}>storage</option>
-            <option value={"other"}>other</option>
+            <CategoryList categories={categories} />
           </select>
           <label className="additem_input">Title</label>
           <input
@@ -161,4 +168,4 @@ export default function AddItem() {
       </form>
     </div>
   );
-}
+            }

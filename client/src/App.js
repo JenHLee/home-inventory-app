@@ -52,7 +52,8 @@ function App() {
         />
         <Route path="/signup" element={user ? <Home /> : <Signup />} />
         <Route path="/signin" element={user ? <Home /> : <Signin />} />
-        <Route path="/item/:itemId" element={<Single />} />
+        <Route path="/item/:itemId" element={user? <Single /> : <Signin />} />
+        {/* <Route path="/inventory/:categoryName" element={user? <Inventory /> : <Signin />} /> */}
         <Route
           path="/addItem"
           element={user ? <AddItem /> : <Signin />}

@@ -113,36 +113,34 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//어드민에서 구현할 기능
 //GET ALL ITEMS
 router.get("/", async (req, res) => {
   const email = req.query.email;
   const catName = req.query.cat;
+  // console.log(req.params.name);
   const role = req.query.role;
-  // console.log(role);
+  // console.log("email: " + email);
+  // console.log("role: " + role);
   try {
     let items; //It can changable
-    if (email == null) {
-      throw "email is empty";
-      res.status(500).json();
+    if(email == null) {
+        throw "email is empty";
     }
-    if (role == 1 || role == 3) {
-      console.log("User is admin, get all items.");
+    else if (role == 1 || role == 3) {
+      console.log("if user is admin.");
       items = await Item.find();
     } else if (email) {
-      items = await Item.find({ email }); //Same as username:username
+        items = await Item.find({ email });
     } else if (catName) {
-      items = await Item.find({
-        category: {
-          $in: [catName], //check if the catName is existed inside of categories array.
-        },
+      posts = await Post.find({
+          categories: {
+              $in: [catName],//check if the catName is existed inside of categories array. 
+          },
       });
     }
-    // console.log("items: " + items);
     res.status(200).json(items);
-  } catch (err) {
-    console.log("error: " + err);
-    res.status(500).json(err);
-  }
+}catch (err){
+  console.log(err);
+}
 });
 module.exports = router;

@@ -9,11 +9,14 @@ export default function Category(props) {
   const [editCategoryClicked, setEditCategoryClicked] = useState(false);
 
   const handleEdit = (e) => {
-    const editedCategoryName = e.target.innerText;
-    editedCategoryName && props.handleEdit(props.category, editedCategoryName);
-    setEditCategoryClicked(false);
+    if (e.key === "Enter") {
+      const editedCategoryName = e.target.innerText;
+      editedCategoryName &&
+        props.handleEdit(props.category, editedCategoryName);
+      setEditCategoryClicked(false);
+    }
   };
-
+  
   const handleDelete = () => {
     props.handleDelete(props.category);
   };
@@ -27,7 +30,8 @@ export default function Category(props) {
               className="category_name"
               contentEditable={editCategoryClicked}
               suppressContentEditableWarning={true}
-              onBlur={handleEdit}
+              // onBlur={handleEdit}
+              onKeyDown={handleEdit}
             >
               {props.category.name}
             </p>

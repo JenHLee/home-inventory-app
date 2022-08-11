@@ -27,6 +27,15 @@
     justify-items: left;
 }
 
+.user_name, .user_email {
+    padding-bottom: 5px;
+}
+
+.user_name{
+    font-weight: bold;
+    color: #423728;
+}
+
 .user_img {
     width: 100px;
     height: 100px;
