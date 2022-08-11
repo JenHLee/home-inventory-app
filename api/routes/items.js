@@ -66,17 +66,26 @@ router.get("/:id", async (req, res) => {
         res.status(200).json(item);
     }
     catch (err) {
+
         res.status(500).json(err);
     }
 });
+
+router.get("/filter/:categoryName", async (req,res)=> {
+    try {
+        const filteredItems = await Item.find({"category": req.params.categoryName});
+        res.status(200).json(filteredItems);
+
+    } catch(err) {
+        res.status(500).json(err);
+    }
+})
 
 //어드민에서 구현할 기능
 //GET ALL ITEMS
 router.get("/", async (req, res) => {
     const email = req.query.email;
-    const catName = req.query.category;
     const role = req.query.role;
-    console.log('category name: '+catName);
     try {
         let items; //It can changable
         if(email == null) {
@@ -91,7 +100,6 @@ router.get("/", async (req, res) => {
             console.log("if user is admin.");
             items = await Item.find();
         } 
-        //console.log("items: " + items);
         res.status(200).json(items);
     }
     catch (err) {

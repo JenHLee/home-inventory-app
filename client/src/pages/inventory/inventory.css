@@ -26,14 +26,14 @@
     
 }
 
-ul {
+.inventory_category_list > ul {
     list-style: none;
     padding-left:0;
 }
-li{
+.sidebarListItem li{
     cursor: pointer;
 }
-li:hover {
+.sidebarListItem li:hover {
     background-color: rgb(164, 164, 164);
 
 }
