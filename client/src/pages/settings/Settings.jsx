@@ -63,6 +63,10 @@ export default function Settings() {
         title: "User account is updated",
       });
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+  
+      if (user.status == 'inactive'){
+        dispatch({type: "LOGOUT"});
+      }
     } catch (err) {
       dispatch({ type: "UPDATE_FAILURE" });
     }
@@ -106,6 +110,7 @@ export default function Settings() {
           </div>
           <div className="settings_input">
             <table className="settings_input_table">
+              <tbody>
               <tr>
                 <td>
                   <label className="settings_label">First Name</label>
@@ -173,6 +178,7 @@ export default function Settings() {
                   </div>
                 </td>
               </tr>
+              </tbody>
             </table>
             <div className="settings_btn_div">
               <button

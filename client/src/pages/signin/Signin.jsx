@@ -10,6 +10,8 @@ export default function Signin() {
   const { dispatch, isFetching } = useContext(Context);
   const [error, setError] = useState("");
 
+  console.log("userRef: " + JSON.stringify(userRef.data));
+
   const handleSubmit = async (e) => {
     // console.log("e:" + JSON.stringify(e.data));
     e.preventDefault();
@@ -28,6 +30,7 @@ export default function Signin() {
       let userState = JSON.stringify(res.data.status);
       console.log("userState: " + userState);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+     
     } catch (err) {
       setError(err.response.data.message);
       dispatch({ type: "LOGIN_FAILURE" });

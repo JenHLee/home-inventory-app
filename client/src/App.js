@@ -48,18 +48,18 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route
           path="/inventory"
-          element={regularUser ? <Inventory /> : <Signup />}
+          element={user ? <Inventory /> : <Signup />}
         />
-        <Route path="/signup" element={regularUser ? <Home /> : <Signup />} />
-        <Route path="/signin" element={regularUser ? <Home /> : <Signin />} />
+        <Route path="/signup" element={user ? <Home /> : <Signup />} />
+        <Route path="/signin" element={user ? <Home /> : <Signin />} />
         <Route path="/item/:itemId" element={<Single />} />
         <Route
           path="/addItem"
-          element={regularUser ? <AddItem /> : <Signin />}
+          element={user ? <AddItem /> : <Signin />}
         />
         <Route
           path="/settings"
-          element={regularUser ? <Settings /> : <Signup />}
+          element={user ? <Settings /> : <Signup />}
         />
         {/* didn't set admin page yet */}
         <Route

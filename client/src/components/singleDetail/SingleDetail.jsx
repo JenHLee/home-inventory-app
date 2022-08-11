@@ -38,7 +38,7 @@ export default function SingleDetail() {
   const handleDelete = () => {
     try {
       axios.delete(`http://localhost:3000/homeserver/api/items/${item._id}`, {
-        data: { email: user.email },
+        data: { email: user.email, role: user.role },
       });
 
       const Toast = Swal.mixin({
@@ -70,13 +70,13 @@ export default function SingleDetail() {
         `http://localhost:3000/homeserver/api/items/${item._id}`,
         {
           email: user.email,
+          role: user.role,
           category,
           title,
           price,
         }
       );
       setUpdateMode(false);
-
     } catch (err) {
       console.log(err);
     }
@@ -123,7 +123,9 @@ export default function SingleDetail() {
             <label className="singleDetail_input">Price</label>
             <input
               type="text"
+              // step="0.01"
               className="singleDetail_input"
+              // pattern="^\d+(?:\.\d{1,2})?$"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />

@@ -40,7 +40,6 @@ router.post("/signin", async (req, res) => {
     const validated = await bcrypt.compare(req.body.password, user.password);
     //unique user find by email (unique key) in Mongo DB
     console.log("email user found");
-
     //user status check
     console.log("user status: " + user.status);
     if(user.status == 'inactive'){
@@ -63,11 +62,10 @@ router.post("/signin", async (req, res) => {
 
     const userStatus = user.status;
     console.log("userStatus: " + userStatus);
-
     const { password, ...others } = user._doc;
     return res.status(200).json(others);
-
-  } catch (err) {
+  } 
+  catch (err) {
     console.log("error is inside catch");
     //res.status(500).json(err);
     console.log("error message:" + err);

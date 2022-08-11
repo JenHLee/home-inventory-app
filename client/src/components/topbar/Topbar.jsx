@@ -11,6 +11,7 @@ function Topbar() {
   // 디스패치는 스토어의 내장 함수 중 하나로 리듀서에게 Action 을 발생하라고 시키는 것.
   // dispatch 함수는 dispatch(action) 이런 식으로 Action 을 인자로 넘긴다.
   const PF = "http://localhost:5000/images/";
+  // console.log("user: " + JSON.stringify(user.data));
 
   const handleLogout = () => {
     // console.log("handleLogout in");
@@ -57,6 +58,7 @@ function Topbar() {
             </Link>
           </li>
           {user ? (
+            // 1 = systemAdmin, 3 = companyAdmin
             user.role === 1 || user.role === 3 ? (
               <>
                 <li className="topListItem" id="listItemFourth">
@@ -70,20 +72,21 @@ function Topbar() {
                   </Link>
                 </li>
               </>
-            ) : (
-              <li className="topListItem" id="listItemThird">
+            ) : null
+          ) : null}
+          {user ? (
+            <>
+             <li className="topListItem" id="listItemThird">
                 <Link className="link" to="/inventory">
                   INVENTORY
                 </Link>
               </li>
-            )
-          ) : null}
-          {user ? (
             <li className="topListItem" id="listItemFourth">
               <span className="link" onClick={handleLogout}>
                 LOGOUT
               </span>
             </li>
+            </>
           ) : (
             <li className="topListItem" id="listItemLast">
               <Link className="link" to="/signin">

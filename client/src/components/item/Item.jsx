@@ -23,6 +23,14 @@ export default function Item({ item }) {
                   <span className="item_category" key={item.category}>
                     {item.category}
                   </span>
+                  {
+                    user.role === 2 ? null :
+                  
+                    (<span className="item_email" key={item.email}>
+                    {item.email}
+                  </span>
+                 )
+                 }
                 </div>
                 <span className="item_title" key={item.title}>
                   {item.title}

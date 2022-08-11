@@ -31,17 +31,37 @@ export default function AddItem() {
       newItem.photo = filename;
       try {
         await axios.post("http://localhost:3000/homeserver/api/upload", data);
-        // console.log("data: " + data);
+        const res = await axios.post(
+          "http://localhost:3000/homeserver/api/items/",
+          newItem
+        );
+        // console.log("res: " + res);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+  
+        Toast.fire({
+          icon: "success",
+          title: "New item is added in successfuly",
+        });
+  
+        if (Toast.fire) {
+          window.location.replace("/inventory");
+        };
       } catch (err) {
-       console.log("error: " + err);
-      } 
-    } 
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/homeserver/api/items/",
-        newItem
-      );
-      // console.log("res: " + res);
+        console.log(err);
+      }
+      // console.log("data: " + data);
+      
+    } else {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -55,15 +75,9 @@ export default function AddItem() {
       });
 
       Toast.fire({
-        icon: "success",
-        title: "New item is added in successfuly",
-      });
-
-      if (Toast.fire) {
-        window.location.replace("/inventory");
-      };
-    } catch (err) {
-      console.log(err);
+        icon: "error",
+        title: "Item's photo is required!",
+      });      
     }
   };
 
@@ -89,8 +103,8 @@ export default function AddItem() {
           <input
             type="file"
             id="file_input"
+            name="file_input"
             style={{ display: "none" }}
-            required
             onChange={(e) => setFile(e.target.files[0])}
           />
         </div>
@@ -122,7 +136,9 @@ export default function AddItem() {
           <label className="additem_input">Price</label>
           <input
             type="text"
-            placeholder="0"
+            // step="0.01"
+            // pattern="^\d+(?:\.\d{1,2})?$"
+            placeholder="0.00"
             required
             className="additem_input"
             onChange={(e) => setPrice(e.target.value)}

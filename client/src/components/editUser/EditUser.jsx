@@ -124,6 +124,7 @@ function EditUser() {
           </div>
           <div className="editUser_input">
             <table className="editUser_input_table">
+              <tbody>
               <tr>
                 <td>
                   <label className="editUser_label">First Name</label>
@@ -191,6 +192,7 @@ function EditUser() {
                   </div>
                 </td>
               </tr>
+              </tbody>
             </table>
             <div className="editUser_btn_div">
               <button
