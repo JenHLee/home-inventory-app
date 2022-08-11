@@ -8,10 +8,21 @@
     padding-right: 5%;
 }
 
-
 .inventory_category_selector {
-    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
     font-weight: bold;
+    position: relative;
+}
+.inventory_icon{
+    position: absolute;
+    display: inline-block;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    bottom: 10;
 }
 
 .inventory_category_list {
@@ -23,16 +34,14 @@
     
 }
 
-.inventory_ul {
+.inventory_category_list > ul {
     list-style: none;
-    padding-bottom: 10%;
     padding-left:0;
-    
 }
-.inventory_li{
+.sidebarListItem li{
     cursor: pointer;
 }
-.inventory_li:hover {
+.sidebarListItem li:hover {
     background-color: rgb(164, 164, 164);
 
 }

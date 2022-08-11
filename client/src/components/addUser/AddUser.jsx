@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./addUser.css";
+import Swal from "sweetalert2";
 
 export default function AddUser() {
   const [firstname, setFirstname] = useState("");
@@ -9,13 +10,13 @@ export default function AddUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("handlesubmit function in after event prevent");
     console.log("e: " + JSON.stringify(e.data));
-    setError(false);
+    // setError(false);
     console.log("before try/catch: " + firstname, lastname, email, password);
     try {
       console.log("try in");
@@ -31,12 +32,38 @@ export default function AddUser() {
       );
       console.log("res: " + res);
       console.log("after try: " + firstname, lastname, email, password, status);
-      alert("User is created!");
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+      Toast.fire({
+      icon: "success",
+      title: "User is created in successfuly",
+    });
       res.data && window.location.replace("/admin/manageUser");
     } catch (err) {
-      console.log("catch in");
-      console.log(err);
-      setError(true);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+      Toast.fire({
+      icon: "error",
+      title: "The email is already taken",
+    });
     }
   };
   return (
@@ -57,6 +84,7 @@ export default function AddUser() {
           </div>
           <div className="addUser_input">
             <table className="addUser_input_table">
+              <tbody>
               <tr>
                 <td>
                   <label className="addUser_label">First Name</label>
@@ -121,6 +149,7 @@ export default function AddUser() {
                   </div>
                 </td>
               </tr>
+              </tbody>
             </table>
             <div className="addUser_btn_div">
               <button
@@ -130,7 +159,7 @@ export default function AddUser() {
               >
                 Create
               </button>
-              <Link className="link" to="/">
+              <Link className="link" to="/admin/manageUser">
                 <button
                   className="addUser_btn"
                   id="addUser_btn_cancel"
@@ -142,7 +171,6 @@ export default function AddUser() {
             </div>
           </div>
         </form>
-        {error && <span className="error_msg">Email is already taken</span>}
       </div>
     </div>
   );
