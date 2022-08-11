@@ -4,14 +4,32 @@ import "./inventory.css";
 import axios from "axios";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Link } from "react-router-dom";
 // import { useLocation } from "react-router";
 
 export default function Home() {
   const [items, setItems] = useState([]);
   const { user } = useContext(Context);
+  const [categories, setCategories] = useState([]);
   // const search  = useLocation();
 
+  const fetchCategories = async () => {
+    const res = await axios.get(
+      "http://localhost:3000/homeserver/api/categories/"
+    );
+    return res.data;
+  };
+
   useEffect(() => {
+    const getCategories = async () => {
+      const res = await axios.get(
+        "http://localhost:3000/homeserver/api/categories"
+      );
+      setCategories(res.data);
+    };
+    getCategories();
+
     const fetchitems = async () => {
       console.log("fetch item in");
       const res = await axios.get(
@@ -20,12 +38,40 @@ export default function Home() {
       );
       // console.log(`${JSON.stringify(search)}`);
       setItems(res.data);
-      console.log(JSON.stringify(res.data));
+      fetchCategories().then((data) => {
+        setCategories(data);
+      });
     };
     fetchitems();
   }, []);
   return (
     <>
+      <div className="inventory_top">
+        <div className="inventory_top_left">
+          <div className="inventory_category_selector">
+            <span>Category | All </span>
+            <KeyboardArrowDownIcon className="inventory_icon" />
+          </div>
+          <div className="inventory_category_list">
+            <ul>
+              {/* {categories.map((c) => (
+                <li>{c.name}</li>
+              ))} */}
+
+              {categories.map((c) => (
+                <Link key={c.name} to={`/?cat=${c.name}`} className="link">
+                  <li className="sidebarListItem" key={"c.name"}>
+                    {c.name}
+                  </li>
+                </Link>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <Link className="link" to="/addItem">
+          <button className="inventory_add_btn">+ Add Item</button>
+        </Link>
+      </div>
       <div className="inventory">
         <Items items={items} />
       </div>

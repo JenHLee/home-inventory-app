@@ -6,6 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./singleDetail.css";
 import Swal from "sweetalert2";
+import CategoryList from "../categoryList/CategoryList";
 
 export default function SingleDetail() {
   const location = useLocation();
@@ -17,6 +18,7 @@ export default function SingleDetail() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const getItem = async () => {
@@ -33,7 +35,17 @@ export default function SingleDetail() {
       // console.log("price: " + res.data.price);
     };
     getItem();
+    fetchCategories().then((data) => {
+      setCategories(data);
+    });
   }, [path]); //[parameter]
+
+  const fetchCategories = async () => {
+    const res = await axios.get(
+      "http://localhost:3000/homeserver/api/categories/"
+    );
+    return res.data;
+  };
 
   const handleDelete = () => {
     try {
@@ -76,7 +88,6 @@ export default function SingleDetail() {
         }
       );
       setUpdateMode(false);
-
     } catch (err) {
       console.log(err);
     }
@@ -102,15 +113,7 @@ export default function SingleDetail() {
               <option>
                 --------------------------------------------------------
               </option>
-              <option value={"kitchen"}>kitchen</option>
-              <option value={"bathroom"}>bathroom</option>
-              <option value={"living room"}>living room</option>
-              <option value={"basement"}>basement</option>
-              <option value={"garage"}>garage</option>
-              <option value={"office"}>office</option>
-              <option value={"utility room"}>utility room</option>
-              <option value={"storage"}>storage</option>
-              <option value={"other"}>other</option>
+              <CategoryList categories={categories} />
             </select>
             <label className="single_detail_title">Title</label>
             <input

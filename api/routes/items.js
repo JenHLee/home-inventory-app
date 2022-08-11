@@ -74,28 +74,24 @@ router.get("/:id", async (req, res) => {
 //GET ALL ITEMS
 router.get("/", async (req, res) => {
     const email = req.query.email;
-    const catName = req.query.cat;
+    const catName = req.query.category;
     const role = req.query.role;
-    // console.log(role);
+    console.log('category name: '+catName);
     try {
         let items; //It can changable
         if(email == null) {
             throw "email is empty";
             res.status(500).json();
         }
-        if (email) {
+        else if (email) {
             items = await Item.find({ email });//Same as username:username 
-        } else if (catName) {
-            items = await Item.find({
-                category: {
-                    $in: [catName],//check if the catName is existed inside of categories array. 
-                },
-            });
+            
+        
         } else if(role == 1 || role == 3) {
             console.log("if user is admin.");
             items = await Item.find();
         } 
-        console.log("items: " + items);
+        //console.log("items: " + items);
         res.status(200).json(items);
     }
     catch (err) {

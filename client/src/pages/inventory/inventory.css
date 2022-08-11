@@ -1,0 +1,70 @@
+.inventory_top {
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 30vw;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.inventory_top_left {
+    /* position: relative; */
+}
+
+.inventory_category_selector {
+    text-align: left;
+    font-weight: bold;
+}
+
+.inventory_category_list {
+    display: none;
+    position: absolute;
+    background-color: white;
+    padding-top: 20px;
+    padding-right: 10px;
+    
+}
+
+ul {
+    list-style: none;
+    padding-left:0;
+}
+li{
+    cursor: pointer;
+}
+li:hover {
+    background-color: rgb(164, 164, 164);
+
+}
+
+.inventory_top_left:hover .inventory_category_list{
+    display:block;
+}
+
+.inventory_icon {
+    cursor: pointer;
+}
+
+.inventory_add_btn {
+    padding: 7px;
+    width: 90px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: solid 1px var(--point-color);
+    background-color: var(--point-color);
+    color: white;
+
+}
+
+.inventory_add_btn:hosver {
+    background-color: white;
+    border: solid 1px var(--point-color);
+    color: var(--point-color);
+}
+
+.inventory_category_selector {
+    position: relative;
+    display: inline-block;
+}

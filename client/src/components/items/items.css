@@ -1,39 +1,4 @@
-.items_top {
-    padding-top: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 30vw;
-    padding-left: 5%;
-    padding-right: 5%;
-}
 
-.items_category_selector {
-    text-align: left;
-    font-weight: bold;
-}
-
-.items_icon {
-    cursor: pointer;
-}
-
-.items_add_btn {
-    padding: 7px;
-    width: 90px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    border: solid 1px var(--point-color);
-    background-color: var(--point-color);
-    color: white;
-
-}
-
-.items_add_btn:hover {
-    background-color: white;
-    border: solid 1px var(--point-color);
-    color: var(--point-color);
-}
 
 .items {
     display: flex;
