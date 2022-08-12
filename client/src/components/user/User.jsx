@@ -6,6 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function User({ userprop }) {
   const { user } = useContext(Context);
@@ -24,7 +25,23 @@ export default function User({ userprop }) {
           data: { userId: userprop._id },
         }
       );
-      alert("User is deleted!");
+      
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+      Toast.fire({
+      icon: "success",
+      title: "User is deleted in successfuly",
+    });
+
       window.location.replace("/admin/manageUser");
     } catch (err) {
       console.log("err : " + err);
