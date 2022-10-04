@@ -17,11 +17,3 @@
 - Admin| Main Page
 ![admin-main](https://user-images.githubusercontent.com/97131199/193737181-563c594d-6787-4589-9f64-e4c12a87c0e2.png)
 <br>
-- About page
-![about](https://user-images.githubusercontent.com/97131199/193737580-b8d3ea44-0983-4ede-92d3-ca5efd1a6e73.png)
-<br>
-- Admin| Category Page
-<br>
-- Admin| Inventory Page
-<br>
-- User| Inventory Page
