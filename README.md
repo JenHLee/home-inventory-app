@@ -15,5 +15,5 @@
 
 ## :computer: Live Demo
 - Admin| Main Page
-![admin-main](https://user-images.githubusercontent.com/97131199/193737181-563c594d-6787-4589-9f64-e4c12a87c0e2.png)
-<br>
+![admin-main](https://user-images.githubusercontent.com/97131199/193737904-30398033-c451-4125-8808-50eeaab4923f.png)
+
